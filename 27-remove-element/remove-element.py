@@ -5,17 +5,9 @@ class Solution(object):
         :type val: int
         :rtype: int
         """
-        i = 0
-        j = 0
-        while j < len(nums):
-            if nums[j] == val:
-                j += 1
-            else:
-                nums[i] = nums[j]
-                i += 1
-                j += 1
-        k = i
-        for m in range(i, len(nums)):
-            nums[m] = ''
-        return k
-            
+        index = 0
+        for i in range(len(nums)):
+            if nums[i] != val:
+                nums[index] = nums[i]
+                index += 1
+        return index
