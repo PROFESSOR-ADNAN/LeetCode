@@ -4,11 +4,9 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         """
-        count_map = {}
-
-        for i in range(len(nums)):
-            if nums[i] in count_map:
+        seen = set()
+        for num in nums:
+            if num in seen:
                 return True
-            else:
-                count_map[nums[i]] = 1
+            seen.add(num)
         return False
