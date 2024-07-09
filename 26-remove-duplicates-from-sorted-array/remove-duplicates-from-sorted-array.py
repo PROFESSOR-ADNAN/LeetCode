@@ -4,19 +4,10 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        i = 0
-        j = 1
-
-        while j < len(nums):
-            if nums[j] > nums[i]:
-                nums[i+1] = nums[j]
-                i += 1
-                j += 1
-            else:
-                j += 1
-        k = i + 1
-        for m in range(i + 1, len(nums)):
-            nums[m] = ""
-        
-        return k
-            
+        index = 1
+        n = len(nums)
+        for i in range(1, n):
+            if nums[i] != nums[i-1]:
+                nums[index] = nums[i]
+                index += 1
+        return index
