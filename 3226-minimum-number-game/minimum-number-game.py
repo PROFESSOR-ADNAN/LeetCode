@@ -4,10 +4,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        nums.sort()
-        arr = []
-        for num  in nums:
-            arr.append(num)
-        for i in range(0, len(arr) - 1, 2):
-            arr[i], arr[i+1] = arr[i+1], arr[i]        
-        return arr
+        res = []
+        nums = sorted(nums)
+        for i in range(0, len(nums), 2):
+            res.extend(nums[i:i+2][::-1])
+        return res
