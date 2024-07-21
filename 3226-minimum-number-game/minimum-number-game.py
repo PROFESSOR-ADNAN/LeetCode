@@ -4,8 +4,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        res = []
-        nums = sorted(nums)
-        for i in range(0, len(nums), 2):
-            res.extend(nums[i:i+2][::-1])
-        return res
+        nums.sort()
+        for i in range(0, len(nums) - 1, 2):
+            nums[i], nums[i+1] = nums[i+1], nums[i]        
+        return nums
