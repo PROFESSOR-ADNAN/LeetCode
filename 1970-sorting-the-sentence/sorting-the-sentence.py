@@ -4,23 +4,14 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        sorting_map = {}
-        word = ""
-        res = ""
-        count = 1
+        hash_map = {}
+        splited_list = s.split(" ")
+        ans = ""
 
-        s += " "
-        for letter in s:
-            if letter == " ":
-                num = int(word[-1])
-                sorting_map[num] = word[:-1:]
-                word = ""
-                letter = ""
-                count += 1
-            word += letter
-        for i in range(1, count):
-            res += sorting_map[i]
-            if count != i + 1:
-                res += " "
-        
-        return res
+        for word in splited_list:
+            hash_map[int(word[-1])] = word[:-1:]
+        for i in range(1, len(splited_list) + 1):
+            ans += hash_map[i]
+            if i != len(splited_list):
+                ans += " "
+        return ans
