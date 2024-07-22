@@ -8,12 +8,14 @@ class Solution(object):
         g.sort()
         s.sort()
         counter = 0
-        index = 0
-        for i in range(len(g)):
-            for j in range(index, len(s)):
-                if g[i] <= s[j]:
-                    counter += 1
-                    index = j+1
-                    break
+        i = 0
+        j = 0
+        while j < len(s):
+            if i < len(g) and s[j] >= g[i]:
+                counter += 1
+                i += 1
+                j += 1
+            else:
+                j += 1
         return counter
-        
+            
