@@ -7,23 +7,22 @@ class Solution(object):
         :type n: int
         :rtype: None Do not return anything, modify nums1 in-place instead.
         """
-        left = right = k = 0
-        left_list = nums1[:m+1]
+        nums3 = []
+        left = 0
+        right = 0
         while left < m and right < n:
-            if left_list[left] < nums2[right]:
-                nums1[k] = left_list[left]
+            if nums1[left] <= nums2[right]:
+                nums3.append(nums1[left])
                 left += 1
-                k += 1
             else:
-                nums1[k] = nums2[right]
+                nums3.append(nums2[right])
                 right += 1
-                k += 1
         while left < m:
-            nums1[k] = left_list[left]
+            nums3.append(nums1[left])
             left += 1
-            k += 1
         while right < n:
-            nums1[k] = nums2[right]
+            nums3.append(nums2[right])
             right += 1
-            k += 1
+        for i in range(n+m):
+            nums1[i] = nums3[i]
         return nums1
