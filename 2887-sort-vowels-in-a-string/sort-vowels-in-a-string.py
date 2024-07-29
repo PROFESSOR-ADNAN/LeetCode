@@ -4,19 +4,16 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        vowel_in_the_string = []
-        vowels = "aeiouAEIOU"
-        for i in range(len(s)):
-            if s[i] in vowels:
-                vowel_in_the_string.append(s[i])
-        vowels_sorted = sorted(vowel_in_the_string)
-        ans = ""
+        vowel = "AEIOUaeiou"
+        vowels = [char for char in s if char in vowel]
+        vowels_sorted = sorted(vowels)
+        res = ""
         j = 0
         for i in range(len(s)):
-            if s[i] in vowels:
-                ans += vowels_sorted[j]
+            if s[i] in vowel:
+                res += vowels_sorted[j]
                 j += 1
             else:
-                ans += s[i]
-        return ans
+                res += s[i]
+        return res
                 
