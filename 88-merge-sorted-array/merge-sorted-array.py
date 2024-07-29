@@ -20,6 +20,5 @@ class Solution(object):
             k -= 1
         while r >= 0:
             nums1[k] = nums2[r]
-            k -= 1
-            r -= 1
+            k, r = k - 1, r - 1
         return nums1
