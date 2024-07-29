@@ -4,21 +4,19 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        ind = []
-        vowels = []
-        sett = ("a", "e", "i", "o", "u", "A", "E", "I","O", "U")
-        str_to_list = []
-        for itm in s:
-            str_to_list.append(itm)
-        for i in range(len(str_to_list)):
-            if str_to_list[i] in sett:
-                vowels.append([ord(str_to_list[i]), str_to_list[i]])
-                ind.append(i)
-        vowels.sort()
-        for i in range(len(ind)):
-            str_to_list[ind[i]] = vowels[i][1]
-        final_str = ""
-        for itm in str_to_list:
-            final_str += itm
-        return final_str
-            
+        vowel_in_the_string = []
+        vowels = "aeiouAEIOU"
+        for i in range(len(s)):
+            if s[i] in vowels:
+                vowel_in_the_string.append(s[i])
+        vowels_sorted = sorted(vowel_in_the_string)
+        ans = ""
+        j = 0
+        for i in range(len(s)):
+            if s[i] in vowels:
+                ans += vowels_sorted[j]
+                j += 1
+            else:
+                ans += s[i]
+        return ans
+                
