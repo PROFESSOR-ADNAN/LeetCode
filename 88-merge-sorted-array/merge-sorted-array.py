@@ -18,10 +18,6 @@ class Solution(object):
                 nums1[k] = nums2[r]
                 r -= 1
             k -= 1
-        while l >= 0:
-            nums1[k] = nums1[l]
-            k -= 1
-            l -= 1
         while r >= 0:
             nums1[k] = nums2[r]
             k -= 1
