@@ -6,7 +6,16 @@ class Solution(object):
         :rtype: List[int]
         """
         intersection = set()
-        for num in nums1:
-            if num in nums2:
-                intersection.add(num)
+        nums1.sort()
+        nums2.sort()
+        l = r = 0
+        while l < len(nums1) and r < len(nums2):
+            if nums1[l] == nums2[r]:
+                intersection.add(nums1[l])
+                l += 1
+                r += 1
+            elif nums1[l] < nums2[r]:
+                l += 1
+            else:
+                r += 1
         return intersection
