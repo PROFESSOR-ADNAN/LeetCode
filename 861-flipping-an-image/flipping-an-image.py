@@ -4,18 +4,12 @@ class Solution(object):
         :type image: List[List[int]]
         :rtype: List[List[int]]
         """
-        for i in range(len(image)):
+        for row in image:
             l = 0
-            r = len(image[i]) - 1
+            r = len(row) - 1
             while l <= r:
-                image[i][l], image[i][r] = image[i][r], image[i][l]
+                row[l], row[r] = 1 - row[r], 1 - row[l]
                 l += 1
                 r -= 1
-        for i in range(len(image)):
-            for j in range(len(image)):
-                if image[i][j] == 0:
-                    image[i][j] = 1
-                else:
-                    image[i][j] = 0
         return image
             
