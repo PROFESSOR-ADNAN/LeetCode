@@ -5,6 +5,9 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        nums.sort()
-        return nums[len(nums) - k]
+        list1 = [-x for x in nums]
+        heapq.heapify(list1)
+        for i in range(k):
+            itm = heapq.heappop(list1)
+        return itm * -1
         
