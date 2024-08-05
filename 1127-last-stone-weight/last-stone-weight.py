@@ -6,10 +6,8 @@ class Solution(object):
         """
         stones.sort()
         while len(stones) > 1:
-            last = stones[len(stones) - 1]
-            second_to_last = stones[len(stones) - 2]
-            stones.pop()
-            stones.pop()
+            last = stones.pop()
+            second_to_last = stones.pop()
             if last!= second_to_last:
                 diff = last - second_to_last
                 stones.append(diff)
