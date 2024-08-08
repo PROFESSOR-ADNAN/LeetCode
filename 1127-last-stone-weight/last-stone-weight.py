@@ -4,8 +4,7 @@ class Solution(object):
         :type stones: List[int]
         :rtype: int
         """
-        stones = [x * -1 for x in stones]
-        print(stones)
+        stones = [-s for s in stones]
         heapq.heapify(stones)
         while len(stones) > 1:
             last = heapq.heappop(stones)
@@ -13,5 +12,6 @@ class Solution(object):
             if last != second_to_last:
                 diff = last - second_to_last
                 heapq.heappush(stones, diff)
-        return stones[0] * -1 if len(stones) > 0 else 0
+        stones.append(0)
+        return abs(stones[0])
         
