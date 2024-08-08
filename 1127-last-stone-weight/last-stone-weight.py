@@ -4,14 +4,13 @@ class Solution(object):
         :type stones: List[int]
         :rtype: int
         """
+        stones.sort()
         while len(stones) > 1:
-            heapq._heapify_max(stones)
-            max = heapq.heappop(stones)
-            heapq._heapify_max(stones)
-            second_max = heapq.heappop(stones)
+            last = stones.pop()
+            second_to_last = stones.pop()
+            if last - second_to_last != 0:
+                stones.append(last-second_to_last)
+                stones.sort()
 
-            if max != second_max:
-                heapq.heappush(stones, max - second_max)
         return stones[0] if len(stones) > 0 else 0
-
         
