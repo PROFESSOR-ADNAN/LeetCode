@@ -9,9 +9,7 @@ class Solution(object):
         freq = [(num, cnt) for num, cnt in count.items()]
         freq.sort(key=lambda x: -x[1])
         ans = []
-        for i in range(k):
-            ans.append(freq[i][0])
-        return ans
+        return [itm[0] for itm in freq[:k]]
 
 
 
