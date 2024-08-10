@@ -6,9 +6,12 @@ class Solution(object):
         :rtype: List[int]
         """
         count = Counter(nums)
-        freq = [(num, cnt) for num, cnt in count.items()]
-        freq.sort(key=lambda x: -x[1])
-        return [itm[0] for itm in freq[:k]]
+        max_heap = [(-freq, num) for num, freq in count.items()]
+        heapq.heapify(max_heap)
+        ans = []
+        for i in range(k):
+            ans.append(heapq.heappop(max_heap)[1])
+        return ans
 
 
 
