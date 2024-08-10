@@ -12,10 +12,7 @@ class Solution(object):
                 heapq.heappush(min_heap, (freq, num))
             else:
                 heapq.heappushpop(min_heap, (freq, num))
-        ans = []
-        for _, num in min_heap:
-            ans.append(num)
-        return ans
+        return [num for _, num in min_heap]
 
 
 
