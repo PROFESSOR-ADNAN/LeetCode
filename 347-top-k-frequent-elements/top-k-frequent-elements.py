@@ -11,19 +11,12 @@ class Solution(object):
                 seen[num] += 1
             else:
                 seen[num] = 1
-        print(seen)
-        count = []
-        for key in seen:
-            count.append([seen[key], key])
-        print(count)
-        count.sort()
-        print(count)
         res = []
-        for i in range(len(count)-1, len(count)-k-1, -1):
-            res.append(count[i][1])
-        print(res)
-        return res
+        for key in seen:
+            res.append((seen[key], key))
+        res.sort()
+        ans = []
+        for i in range(len(res)-1, len(res)-k-1, -1):
+            ans.append(res[i][1])
 
-        
-     
-        
+        return ans
