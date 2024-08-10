@@ -5,18 +5,16 @@ class Solution(object):
         :type k: int
         :rtype: List[int]
         """
-        seen = {}
-        for num in nums:
-            if num in seen:
-                seen[num] += 1
-            else:
-                seen[num] = 1
-        res = []
-        for key in seen:
-            res.append((seen[key], key))
-        res.sort()
+        count = Counter(nums)
+        freq = [(num, cnt) for num, cnt in count.items()]
+        freq.sort(key=lambda x: -x[1])
         ans = []
-        for i in range(len(res)-1, len(res)-k-1, -1):
-            ans.append(res[i][1])
-
+        for i in range(k):
+            ans.append(freq[i][0])
         return ans
+
+
+
+        
+     
+        
