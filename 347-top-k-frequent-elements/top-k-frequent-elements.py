@@ -8,7 +8,6 @@ class Solution(object):
         count = Counter(nums)
         freq = [(num, cnt) for num, cnt in count.items()]
         freq.sort(key=lambda x: -x[1])
-        ans = []
         return [itm[0] for itm in freq[:k]]
 
 
