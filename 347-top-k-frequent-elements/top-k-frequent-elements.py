@@ -6,11 +6,15 @@ class Solution(object):
         :rtype: List[int]
         """
         count = Counter(nums)
-        max_heap = [(-freq, num) for num, freq in count.items()]
-        heapq.heapify(max_heap)
+        min_heap = []
+        for num, freq in count.items():
+            if len(min_heap) < k:
+                heapq.heappush(min_heap, (freq, num))
+            else:
+                heapq.heappushpop(min_heap, (freq, num))
         ans = []
-        for i in range(k):
-            ans.append(heapq.heappop(max_heap)[1])
+        for _, num in min_heap:
+            ans.append(num)
         return ans
 
 
