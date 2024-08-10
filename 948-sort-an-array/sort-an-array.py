@@ -5,10 +5,10 @@ class Solution(object):
         :rtype: List[int]
         """
         heapq.heapify(nums)
-        res =  []
+        ans = []
         for i in range(len(nums)):
-            res.append(heapq.heappop(nums))
-        return res
+            ans.append(heapq.heappop(nums)) 
+        return ans 
         
 
         
