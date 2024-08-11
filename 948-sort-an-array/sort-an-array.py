@@ -4,33 +4,37 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        def merge_sort(nums):
-            if len(nums) > 1:
-                mid = len(nums) // 2
-                left_list = nums[:mid]
-                right_list = nums[mid:]
-                merge_sort(left_list)
-                merge_sort(right_list)
-                l = r = k = 0
-                while l < len(left_list) and r < len(right_list):
-                    if left_list[l] < right_list[r]:
-                        nums[k] = left_list[l]
-                        k += 1
-                        l += 1
-                    else:
-                        nums[k] = right_list[r]
-                        k += 1
-                        r += 1
-                while l < len(left_list):
-                    nums[k] = left_list[l]
-                    k += 1
-                    l += 1
-                while r < len(right_list):
-                    nums[k] = right_list[r]
-                    k += 1
-                    r += 1
-            return nums
-        return merge_sort(nums)
+        def merge(Arr, L, Mid, R):
+            left, right = Arr[L:Mid+1], Arr[Mid+1:R+1]
+            i, j, k = 0, 0, L
+            while i < len(left) and j < len(right):
+                if left[i] <= right[j]:
+                    Arr[k] = left[i]
+                    i += 1
+                else:
+                    Arr[k] = right[j]
+                    j += 1
+                k += 1
+            while i < len(left):
+                Arr[k] = left[i]
+                i += 1
+                k += 1
+            while j < len(right):
+                Arr[k] = right[j]
+                j += 1
+                k += 1
+            
+
+        def mergeSort(arr, l, r):
+            if l == r:
+                return arr
+            mid = (l+r) // 2
+            mergeSort(arr, l, mid)
+            mergeSort(arr, mid+1, r)
+            merge(arr, l, mid, r)
+            return arr
+
+        return mergeSort(nums, 0, len(nums)-1)
             
 
         
