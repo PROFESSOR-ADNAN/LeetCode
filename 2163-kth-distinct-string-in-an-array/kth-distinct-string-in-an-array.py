@@ -5,16 +5,11 @@ class Solution(object):
         :type k: int
         :rtype: str
         """
-        for i in range(len(arr)):
-            distnict_flag = True
-            for j in range(len(arr)):
-                if i == j:
-                    continue
-                if arr[i] == arr[j]:
-                    distnict_flag = False
-            if distnict_flag:
+        count = Counter(arr)
+        for ch in arr:
+            if count[ch] == 1:
                 k -= 1
                 if k == 0:
-                    return arr[i]
+                    return ch
         return ""
 
