@@ -5,17 +5,13 @@ class Solution(object):
         :type k: int
         :rtype: str
         """
-        seen = {}
-        for itm in arr:
-            if itm in seen:
-                seen[itm] += 1
-            else:
-                seen[itm] = 1
+        count = OrderedDict()
+        for ch in arr:
+            count[ch] = count.get(ch, 0) + 1
+        print(count)
         res = []
-        for itm in arr:
-            if seen[itm] == 1:
-                res.append(itm)
-        print(seen)
+        for ch, cnt in count.items():
+            if cnt  == 1:
+                res.append(ch)
         print(res)
-        return res[k-1] if k > 0 and k <= len(res) else ""
-            
+        return res[k-1] if k <= len(res) else ""
