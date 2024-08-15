@@ -5,11 +5,16 @@ class Solution(object):
         :type k: int
         :rtype: bool
         """
-        indexed_arr = [(nums[i], i) for i in range(len(nums))]
-        indexed_arr.sort()
-        for i in range(len(indexed_arr)-1):
-            if indexed_arr[i][0] == indexed_arr[i+1][0] and abs(indexed_arr[i][1] - indexed_arr[i+1][1]) <= k:
+        seen = set()
+        l, r = 0, 0
+        while r < len(nums):
+            if nums[r] in seen:
                 return True
+            else:
+                seen.add(nums[r])
+            if len(seen) == k+1:
+                seen.remove(nums[l])
+                l += 1
+            r += 1
 
         return False
-        
