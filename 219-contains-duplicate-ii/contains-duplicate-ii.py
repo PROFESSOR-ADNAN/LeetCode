@@ -5,16 +5,15 @@ class Solution(object):
         :type k: int
         :rtype: bool
         """
-        seen = set()
-        l, r = 0, 0
-        while r < len(nums):
-            if nums[r] in seen:
+        window = set()
+        L = 0
+        for R in range(len(nums)):
+            if R - L > k:
+                window.remove(nums[L])
+                L += 1
+            if nums[R] in window:
                 return True
             else:
-                seen.add(nums[r])
-            if len(seen) == k+1:
-                seen.remove(nums[l])
-                l += 1
-            r += 1
-
+                window.add(nums[R])
+        
         return False
