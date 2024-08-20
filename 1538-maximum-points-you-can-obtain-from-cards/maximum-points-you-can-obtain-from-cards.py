@@ -5,18 +5,16 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        window_sum = sum(cardPoints[:k])
-        max_sum = window_sum
-        l = k-1
-        r = len(cardPoints)-1
-        while l >= 0:
-            window_sum -= cardPoints[l]
-            l -= 1
-            window_sum += cardPoints[r]
-            r -= 1
+        l, r = 0, len(cardPoints)-k
+        total = sum(cardPoints[r:])
+        res = total
 
-            max_sum = max(max_sum, window_sum)
+        while r < len(cardPoints):
+            total += (cardPoints[l] - cardPoints[r])
+            res = max(res, total)
+            l += 1
+            r += 1
 
-        return max_sum
+        return res
 
         
