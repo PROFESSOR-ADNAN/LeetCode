@@ -5,17 +5,15 @@ class Solution(object):
         :rtype: int
         """
         max_len = 0
-        ch = set()
+        ch = {}
         l = 0
         r = 0
         while r < len(s):
             if s[r] in ch:
-                ch.remove(s[l])
-                l += 1
-            if s[r] not in ch:
-                ch.add(s[r])
-                max_len = max(max_len, r-l+1)
-                r += 1
-            
+                if ch[s[r]] >= l:
+                    l = ch[s[r]] + 1
+            ch[s[r]] = r
+            max_len = max(max_len, r-l+1)
+            r += 1
 
         return max_len
