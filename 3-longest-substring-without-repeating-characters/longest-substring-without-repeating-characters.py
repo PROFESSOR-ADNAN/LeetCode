@@ -5,13 +5,15 @@ class Solution(object):
         :rtype: int
         """
         max_len = 0
-        for i in range(len(s)):
-            seen = set()
-            for j in range(i, len(s)):
-                if s[j] not in seen:
-                    seen.add(s[j])
-                    max_len = max(max_len, j-i+1)
-                else:
-                    break
+        ch = set()
+        l = 0
+        r = 0
+        while r < len(s):
+            while s[r] in ch:
+                ch.remove(s[l])
+                l += 1
+            max_len = max(max_len, r-l+1)
+            ch.add(s[r])
+            r += 1
+        
         return max_len
-
