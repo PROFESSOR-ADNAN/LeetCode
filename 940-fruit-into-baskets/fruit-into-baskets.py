@@ -4,23 +4,16 @@ class Solution(object):
         :type fruits: List[int]
         :rtype: int
         """
-        fruit_type = set()
-        l, r = 0, 0
         max_len = 0
-        while r < len(fruits):
-            if len(fruit_type) < 2 and fruits[r] not in fruit_type:
-                fruit_type.add(fruits[r])
-                max_len = max(max_len, r-l+1)
-            elif fruits[r] in fruit_type:
-                max_len = max(max_len, r-l+1)
-            else:
-                fruit_type = set()
-                fruit_type.add(fruits[r-1])
-                fruit_type.add(fruits[r])
-                l = r-1
-                
-                while fruits[l] == fruits[l-1]:
-                    l -= 1
-            r += 1
+        fruits_type = {}
+        l = 0
+        for r in range(len(fruits)):
+            fruits_type[fruits[r]] = 1 + fruits_type.get(fruits[r], 0)
+            while len(fruits_type) > 2:
+                fruits_type[fruits[l]] -= 1
+                if fruits_type[fruits[l]] == 0:
+                    del fruits_type[fruits[l]]
+                l += 1
+            max_len = max(max_len, r-l+1)
 
         return max_len
