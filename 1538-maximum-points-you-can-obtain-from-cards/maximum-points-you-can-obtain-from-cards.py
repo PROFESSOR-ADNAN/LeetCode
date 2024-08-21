@@ -7,7 +7,7 @@ class Solution(object):
         """
         l, r = 0, len(cardPoints)-k
         total = sum(cardPoints[r:])
-        res = total
+        res = total 
 
         while r < len(cardPoints):
             total += (cardPoints[l] - cardPoints[r])
@@ -16,5 +16,6 @@ class Solution(object):
             r += 1
 
         return res
+
 
         
