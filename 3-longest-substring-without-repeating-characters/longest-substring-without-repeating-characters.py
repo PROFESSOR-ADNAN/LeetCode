@@ -12,8 +12,8 @@ class Solution(object):
             if s[r] in ch:
                 if ch[s[r]] >= l:
                     l = ch[s[r]] + 1
-            ch[s[r]] = r
             max_len = max(max_len, r-l+1)
+            ch[s[r]] = r
             r += 1
 
         return max_len
