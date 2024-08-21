@@ -5,15 +5,15 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        l, r = 0, len(cardPoints)-k
-        total = sum(cardPoints[r:])
-        res = total 
+        l, r = k-1, len(cardPoints)-1
+        total = sum(cardPoints[:k])
+        res = total
 
-        while r < len(cardPoints):
-            total += (cardPoints[l] - cardPoints[r])
+        while l >= 0:
+            total += (cardPoints[r] - cardPoints[l])
             res = max(res, total)
-            l += 1
-            r += 1
+            l -= 1
+            r -= 1
 
         return res
 
