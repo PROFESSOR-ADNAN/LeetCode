@@ -17,11 +17,6 @@ class Solution(object):
 
 
 
-
-
-
-
-
         # l, r = 0, 0
         # total_len = 0
         # letters = {"a", "b", "c"}
