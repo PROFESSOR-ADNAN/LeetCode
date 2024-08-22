@@ -4,14 +4,17 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
+        ch = {'a': 0, 'b': 0, 'c': 0}
         cnt = 0
-        ch = {}
+        l, r = 0, 0
+        while r < len(s):
+            ch[s[r]] = 1 + ch.get(s[r], 0)
+            while ch['a'] > 0 and ch['b'] > 0 and ch['c'] > 0:
+                cnt += len(s) - r
+                ch[s[l]] -= 1
+                l += 1
+            r += 1
 
-        for i in range(len(s)):
-            ch[s[i]] = i
-            if len(ch) == 3:
-                cnt += 1 + min(ch['a'], ch['b'], ch['c'])
-        
         return cnt
 
 
