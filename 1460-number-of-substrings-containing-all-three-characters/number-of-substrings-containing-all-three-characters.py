@@ -8,8 +8,7 @@ class Solution(object):
         cnt = 0
         for i in range(len(s)):
             ch[s[i]] = i
-            if len(ch) == 3:
-                cnt += 1 + min(ch['a'], ch['b'], ch['c'])
+            cnt += 1 + min(ch['a'], ch['b'], ch['c'])
 
         return cnt
 
