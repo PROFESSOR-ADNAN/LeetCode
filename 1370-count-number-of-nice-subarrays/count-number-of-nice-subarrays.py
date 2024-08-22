@@ -6,8 +6,6 @@ class Solution(object):
         :rtype: int
         """
         def func(k):
-            
-            if k < 0: return 0
             curr, cnt, l = 0, 0, 0
             for r in range(len(nums)):
                 if nums[r] % 2 == 1:
