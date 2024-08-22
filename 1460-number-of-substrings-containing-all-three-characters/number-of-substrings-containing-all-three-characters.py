@@ -7,18 +7,12 @@ class Solution(object):
         cnt = 0
         ch = {}
 
-        for r in range(len(s)):
-            ch[s[r]] = r
+        for i in range(len(s)):
+            ch[s[i]] = i
             if len(ch) == 3:
                 cnt += 1 + min(ch['a'], ch['b'], ch['c'])
         
         return cnt
-
-
-
-
-
-
 
 
 
