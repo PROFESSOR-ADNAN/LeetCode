@@ -4,7 +4,7 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        ch = {}
+        ch = {'a': -1, 'b': -1, 'c': -1}
         cnt = 0
         for i in range(len(s)):
             ch[s[i]] = i
