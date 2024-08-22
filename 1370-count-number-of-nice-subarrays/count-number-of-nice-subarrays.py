@@ -6,6 +6,7 @@ class Solution(object):
         :rtype: int
         """
         def func(k):
+            
             if k < 0: return 0
             curr, cnt, l = 0, 0, 0
             for r in range(len(nums)):
@@ -15,7 +16,6 @@ class Solution(object):
                     if nums[l] % 2 == 1:
                         curr -= 1
                     l += 1
-
                 cnt += (r-l+1)
             
             return cnt
