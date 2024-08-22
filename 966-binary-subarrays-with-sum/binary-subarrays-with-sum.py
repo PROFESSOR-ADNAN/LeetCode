@@ -5,17 +5,21 @@ class Solution(object):
         :type goal: int
         :rtype: int
         """
-        mpp = {0: 1}
-        cnt = 0
-        prefix_sum = 0
-        for i in range(len(nums)):
-            prefix_sum += nums[i]
-            remove = prefix_sum - goal
-            if remove in mpp:
-                cnt += mpp[remove]
-            mpp[prefix_sum] = 1 + mpp.get(prefix_sum, 0)
+        def func(nums, goal):
+            if goal < 0: return 0
+            sum, cnt, l = 0, 0, 0
+            for r in range(len(nums)):
+                sum += nums[r]
+                while sum > goal:
+                    sum -= nums[l]
+                    l += 1
+                cnt += (r-l+1)
+            
+            return cnt
         
-        return cnt
+        return func(nums, goal) - func(nums, goal-1)
+
+            
 
 
 
