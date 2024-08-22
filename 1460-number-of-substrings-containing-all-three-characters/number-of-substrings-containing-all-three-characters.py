@@ -4,24 +4,14 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        l, r = 0, 0
-        total, running_count = 3, 0
-        mpp = {'a': 0, 'b': 0, 'c': 0}
-        res = 0
-        while r < len(s):
-            curr_ch = s[r]
-            if mpp[curr_ch] == 0:
-                running_count += 1
-            mpp[curr_ch] += 1
-            while total == running_count:
-                res += len(s)-r
-                mpp[s[l]] -= 1
-                if mpp[s[l]] == 0:
-                    running_count -= 1
-                l += 1
-            r += 1
-        
-        return res
+        ch = {}
+        cnt = 0
+        for i in range(len(s)):
+            ch[s[i]] = i
+            if len(ch) == 3:
+                cnt += 1 + min(ch['a'], ch['b'], ch['c'])
+
+        return cnt
 
 
 
