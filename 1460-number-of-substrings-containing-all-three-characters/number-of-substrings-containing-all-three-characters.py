@@ -6,6 +6,7 @@ class Solution(object):
         """
         cnt = 0
         ch = {}
+
         for r in range(len(s)):
             ch[s[r]] = r
             if len(ch) == 3:
