@@ -5,17 +5,21 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        def func(k):
-            curr, cnt, l = 0, 0, 0
-            for r in range(len(nums)):
-                if nums[r] % 2 == 1:
-                    curr += 1
-                while curr > k:
-                    if nums[l] % 2 == 1:
-                        curr -= 1
-                    l += 1
-                cnt += (r-l+1)
+        res, odd, l, m = 0, 0, 0, 0
+        for r in range(len(nums)):
+            if nums[r] % 2:
+                odd += 1
             
-            return cnt
+            while odd > k:
+                if nums[l] % 2:
+                    odd -= 1
+                l += 1
+                m = l
+            
+            if odd == k:
+                while not nums[m] % 2:
+                    m += 1
+                    print(m)
+                res += (m-l) + 1
 
-        return func(k) - func(k-1)
+        return res
