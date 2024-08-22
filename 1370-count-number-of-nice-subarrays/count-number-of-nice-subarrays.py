@@ -5,15 +5,19 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        mpp = {0: 1}
-        cnt = 0
-        prefix_sum = 0
-        for i in range(len(nums)):
-            if nums[i] % 2 == 1:
-                prefix_sum += 1
-            remove = prefix_sum - k
-            if remove in mpp:
-                cnt += mpp[remove]
-            mpp[prefix_sum] = 1 + mpp.get(prefix_sum, 0)
+        def func(k):
+            if k < 0: return 0
+            curr, cnt, l = 0, 0, 0
+            for r in range(len(nums)):
+                if nums[r] % 2 == 1:
+                    curr += 1
+                while curr > k:
+                    if nums[l] % 2 == 1:
+                        curr -= 1
+                    l += 1
 
-        return cnt    
+                cnt += (r-l+1)
+            
+            return cnt
+
+        return func(k) - func(k-1)
