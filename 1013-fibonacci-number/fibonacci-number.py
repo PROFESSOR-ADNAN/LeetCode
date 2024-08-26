@@ -4,12 +4,7 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        def fibonaci(n):
-            if n == 1:
-                return 1
-            if n == 0:
-                return 0
-            
-            return fibonaci(n-1) + fibonaci(n-2)
+        if n == 0: return 0
+        if n == 1: return 1
         
-        return fibonaci(n)
+        return self.fib(n-1) + self.fib(n-2)
