@@ -49,11 +49,9 @@ class Solution(object):
         for i in range(1, len(count)):
             count[i] += count[i-1]
 
-        output_heights = [0] * (len(names))
         output_names = [0] * (len(names))
 
         for i in range(len(names)):
-            output_heights[count[heights[i]]-1] = heights[i]
             output_names[count[heights[i]]-1] = names[i]
 
         return output_names[::-1]
