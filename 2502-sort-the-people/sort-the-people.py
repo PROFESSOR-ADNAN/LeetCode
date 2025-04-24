@@ -58,41 +58,65 @@ class Solution(object):
 
 
         # merge sort
-        def merge_sort(arr, names):
-            if len(arr) <= 1:
-                return [arr, names]
-            mid = len(arr)//2
-            left_arr, left = merge_sort(arr[:mid], names[:mid])
-            right_arr, right = merge_sort(arr[mid:], names[mid:])
+        # def merge_sort(arr, names):
+        #     if len(arr) <= 1:
+        #         return [arr, names]
+        #     mid = len(arr)//2
+        #     left_arr, left = merge_sort(arr[:mid], names[:mid])
+        #     right_arr, right = merge_sort(arr[mid:], names[mid:])
 
-            i, j = 0, 0
-            output = []
-            new_names = []
+        #     i, j = 0, 0
+        #     output = []
+        #     new_names = []
 
-            while i < len(left_arr) and j < len(right_arr):
-                if left_arr[i] > right_arr[j]:
-                    output.append(left_arr[i])
-                    new_names.append(left[i])
-                    i += 1
-                else:
-                    output.append(right_arr[j])
-                    new_names.append(right[j])
-                    j += 1
+        #     while i < len(left_arr) and j < len(right_arr):
+        #         if left_arr[i] > right_arr[j]:
+        #             output.append(left_arr[i])
+        #             new_names.append(left[i])
+        #             i += 1
+        #         else:
+        #             output.append(right_arr[j])
+        #             new_names.append(right[j])
+        #             j += 1
 
-            while i < len(left_arr):
-                output.append(left_arr[i])
-                new_names.append(left[i])
-                i += 1
+        #     while i < len(left_arr):
+        #         output.append(left_arr[i])
+        #         new_names.append(left[i])
+        #         i += 1
 
             
-            while j < len(right_arr):
-                output.append(right_arr[j])
-                new_names.append(right[j])
-                j += 1
+        #     while j < len(right_arr):
+        #         output.append(right_arr[j])
+        #         new_names.append(right[j])
+        #         j += 1
 
-            return [output, new_names]
+        #     return [output, new_names]
 
-        temp, res = merge_sort(heights, names)
-        return res
+        # temp, res = merge_sort(heights, names)
+        # return res
 
         # quick sort 
+        def partition (arr, l, r):
+            pivot = arr[r]
+            i = l-1
+
+            for j in range(l, r):
+                if arr[j] >= pivot:
+                    i += 1
+                    arr[i], arr[j] = arr[j], arr[i]
+                    names[i], names[j] = names[j], names[i]
+            
+            arr[i+1], arr[r] = arr[r], arr[i+1]
+            names[i+1], names[r] = names[r], names[i+1]
+            return i+1
+
+        def quick_sort(arr, l, r):
+            if l < r:
+                p = partition(arr, l, r)
+
+                quick_sort(arr, l, p-1)
+                quick_sort(arr, p+1, r)
+        
+        quick_sort(heights, 0, len(heights)-1)
+        return names
+            
