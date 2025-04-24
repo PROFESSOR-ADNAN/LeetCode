@@ -15,18 +15,30 @@ class Solution(object):
         # return names
 
         # selection sort
-        for i in range(len(names)):
-            maxInd = i
-            for j in range(i+1, len(names)):
-                if heights[j] > heights[maxInd]:
-                    maxInd = j
-            heights[i], heights[maxInd] = heights[maxInd], heights[i]
-            names[i], names[maxInd] = names[maxInd], names[i]
+        # for i in range(len(names)):
+        #     maxInd = i
+        #     for j in range(i+1, len(names)):
+        #         if heights[j] > heights[maxInd]:
+        #             maxInd = j
+        #     heights[i], heights[maxInd] = heights[maxInd], heights[i]
+        #     names[i], names[maxInd] = names[maxInd], names[i]
 
-        return names
+        # return names
 
 
         # insertion sort
+        for i in range(1, len(names)):
+            position = i
+            val = heights[position]
+            name_val = names[position]
+            while position > 0 and val > heights[position-1]:
+                heights[position] = heights[position-1]
+                names[position] = names[position-1]
+                position -= 1
+            heights[position] = val
+            names[position] = name_val
+        
+        return names
 
 
         # count sort
