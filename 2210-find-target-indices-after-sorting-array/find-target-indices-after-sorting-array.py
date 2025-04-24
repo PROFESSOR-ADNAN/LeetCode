@@ -6,10 +6,24 @@ class Solution(object):
         :rtype: List[int]
         """
         nums.sort()
-        res = []
-
+        ans = []
         for i in range(len(nums)):
             if nums[i] == target:
-                res.append(i)
-        return res
+                ans.append(i)
+
+        return ans
+
+
+
+
+
+
+
+        # nums.sort()
+        # res = []
+
+        # for i in range(len(nums)):
+        #     if nums[i] == target:
+        #         res.append(i)
+        # return res
         
