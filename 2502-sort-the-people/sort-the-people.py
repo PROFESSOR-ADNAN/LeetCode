@@ -42,21 +42,57 @@ class Solution(object):
 
 
         # count sort
-        count = [0] * (max(heights) + 1)
-        for height in heights:
-            count[height] += 1
+        # count = [0] * (max(heights) + 1)
+        # for height in heights:
+        #     count[height] += 1
         
-        for i in range(1, len(count)):
-            count[i] += count[i-1]
+        # for i in range(1, len(count)):
+        #     count[i] += count[i-1]
 
-        output_names = [0] * (len(names))
+        # output_names = [0] * (len(names))
 
-        for i in range(len(names)):
-            output_names[count[heights[i]]-1] = names[i]
+        # for i in range(len(names)):
+        #     output_names[count[heights[i]]-1] = names[i]
 
-        return output_names[::-1]
+        # return output_names[::-1]
 
 
         # merge sort
+        def merge_sort(arr, names):
+            if len(arr) <= 1:
+                return [arr, names]
+            mid = len(arr)//2
+            left_arr, left = merge_sort(arr[:mid], names[:mid])
+            right_arr, right = merge_sort(arr[mid:], names[mid:])
 
-        # quick sort
+            i, j = 0, 0
+            output = []
+            new_names = []
+
+            while i < len(left_arr) and j < len(right_arr):
+                if left_arr[i] > right_arr[j]:
+                    output.append(left_arr[i])
+                    new_names.append(left[i])
+                    i += 1
+                else:
+                    output.append(right_arr[j])
+                    new_names.append(right[j])
+                    j += 1
+
+            while i < len(left_arr):
+                output.append(left_arr[i])
+                new_names.append(left[i])
+                i += 1
+
+            
+            while j < len(right_arr):
+                output.append(right_arr[j])
+                new_names.append(right[j])
+                j += 1
+
+            return [output, new_names]
+
+        temp, res = merge_sort(heights, names)
+        return res
+
+        # quick sort 
