@@ -27,21 +27,37 @@ class Solution(object):
 
 
         # insertion sort
-        for i in range(1, len(names)):
-            position = i
-            val = heights[position]
-            name_val = names[position]
-            while position > 0 and val > heights[position-1]:
-                heights[position] = heights[position-1]
-                names[position] = names[position-1]
-                position -= 1
-            heights[position] = val
-            names[position] = name_val
+        # for i in range(1, len(names)):
+        #     position = i
+        #     val = heights[position]
+        #     name_val = names[position]
+        #     while position > 0 and val > heights[position-1]:
+        #         heights[position] = heights[position-1]
+        #         names[position] = names[position-1]
+        #         position -= 1
+        #     heights[position] = val
+        #     names[position] = name_val
         
-        return names
+        # return names
 
 
         # count sort
+        count = [0] * (max(heights) + 1)
+        for height in heights:
+            count[height] += 1
+        
+        for i in range(1, len(count)):
+            count[i] += count[i-1]
+
+        output_heights = [0] * (len(names))
+        output_names = [0] * (len(names))
+
+        for i in range(len(names)):
+            output_heights[count[heights[i]]-1] = heights[i]
+            output_names[count[heights[i]]-1] = names[i]
+
+        return output_names[::-1]
+
 
         # merge sort
 
