@@ -42,19 +42,24 @@ class Solution(object):
 
 
         # count sort
-        # count = [0] * (max(heights) + 1)
-        # for height in heights:
-        #     count[height] += 1
+        count = [0] * (max(heights) + 1)
+        for height in heights:
+            count[height] += 1
         
-        # for i in range(1, len(count)):
-        #     count[i] += count[i-1]
+        for i in range(1, len(count)):
+            count[i] += count[i-1]
 
-        # output_names = [0] * (len(names))
+        output_names = [0] * (len(names))
 
         # for i in range(len(names)):
         #     output_names[count[heights[i]]-1] = names[i]
-
-        # return output_names[::-1]
+        i = len(names)-1
+        while i >= 0:
+            output_names[count[heights[i]] - 1] = names[i]
+            count[heights[i]] -= 1
+            i -= 1
+        
+        return output_names[::-1]
 
 
         # merge sort
@@ -96,27 +101,27 @@ class Solution(object):
         # return res
 
         # quick sort 
-        def partition (arr, l, r):
-            pivot = arr[r]
-            i = l-1
+        # def partition (arr, l, r):
+        #     pivot = arr[r]
+        #     i = l-1
 
-            for j in range(l, r):
-                if arr[j] >= pivot:
-                    i += 1
-                    arr[i], arr[j] = arr[j], arr[i]
-                    names[i], names[j] = names[j], names[i]
+        #     for j in range(l, r):
+        #         if arr[j] >= pivot:
+        #             i += 1
+        #             arr[i], arr[j] = arr[j], arr[i]
+        #             names[i], names[j] = names[j], names[i]
             
-            arr[i+1], arr[r] = arr[r], arr[i+1]
-            names[i+1], names[r] = names[r], names[i+1]
-            return i+1
+        #     arr[i+1], arr[r] = arr[r], arr[i+1]
+        #     names[i+1], names[r] = names[r], names[i+1]
+        #     return i+1
 
-        def quick_sort(arr, l, r):
-            if l < r:
-                p = partition(arr, l, r)
+        # def quick_sort(arr, l, r):
+        #     if l < r:
+        #         p = partition(arr, l, r)
 
-                quick_sort(arr, l, p-1)
-                quick_sort(arr, p+1, r)
+        #         quick_sort(arr, l, p-1)
+        #         quick_sort(arr, p+1, r)
         
-        quick_sort(heights, 0, len(heights)-1)
-        return names
+        # quick_sort(heights, 0, len(heights)-1)
+        # return names
             
