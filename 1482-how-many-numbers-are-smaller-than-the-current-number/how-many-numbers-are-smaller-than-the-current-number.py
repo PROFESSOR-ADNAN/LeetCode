@@ -4,21 +4,34 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """ 
-        ind = []
+        max_value = max(nums)
+        count = [0] * (max_value + 1)
         for i in range(len(nums)):
-            ind.append([nums[i], i])
-        ind.sort()
+            count[nums[i]] += 1
+        for i in range(1, len(count)):
+            count[i] += count[i-1]
         
-        nums[ind[0][1]] = 0
-        for i in range(1, len(nums)):
-            if ind[i][0] != ind[i-1][0]:
-                nums[ind[i][1]] = i
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                nums[i] = 0
             else:
-                nums[ind[i][1]] = nums[ind[i-1][1]]
-        
+                nums[i] = count[nums[i]-1] 
         return nums
 
 
+        # ind = []
+        # for i in range(len(nums)):
+        #     ind.append([nums[i], i])
+        # ind.sort()
+        
+        # nums[ind[0][1]] = 0
+        # for i in range(1, len(nums)):
+        #     if ind[i][0] != ind[i-1][0]:
+        #         nums[ind[i][1]] = i
+        #     else:
+        #         nums[ind[i][1]] = nums[ind[i-1][1]]
+        
+        # return nums
 
 
         # ans = []
@@ -31,14 +44,6 @@ class Solution(object):
         #             count += 1
         #     ans.append(count)
         # return ans
-
-
-
-
-
-
-
-
 
 
 
