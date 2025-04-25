@@ -4,16 +4,33 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """ 
-        ans = []
+        ind = []
         for i in range(len(nums)):
-            count = 0
-            for j in range(len(nums)):
-                if i == j:
-                    continue
-                if nums[i] > nums[j]:
-                    count += 1
-            ans.append(count)
-        return ans
+            ind.append([nums[i], i])
+        ind.sort()
+        
+        nums[ind[0][1]] = 0
+        for i in range(1, len(nums)):
+            if ind[i][0] != ind[i-1][0]:
+                nums[ind[i][1]] = i
+            else:
+                nums[ind[i][1]] = nums[ind[i-1][1]]
+        
+        return nums
+
+
+
+
+        # ans = []
+        # for i in range(len(nums)):
+        #     count = 0
+        #     for j in range(len(nums)):
+        #         if i == j:
+        #             continue
+        #         if nums[i] > nums[j]:
+        #             count += 1
+        #     ans.append(count)
+        # return ans
 
 
 
