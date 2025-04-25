@@ -6,10 +6,39 @@ class Solution(object):
         :rtype: int
         """
         costs.sort()
-        counter = 0
+        ans = 0
         ind = 0
-        while ind < len(costs) and coins - costs[ind] >= 0:
-                counter += 1
-                coins = coins - costs[ind]
+        # print(costs)
+        while coins:
+            if ind < len(costs) and coins >= costs[ind]:
+                ans += 1
+                coins -= costs[ind]
                 ind += 1
-        return counter
+            else:
+                break
+        return ans
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # costs.sort()
+        # res = 0
+        # ind = 0
+        # while ind < len(costs) and coins >= costs[ind]:
+        #     coins -= costs[ind]
+        #     ind += 1
+        #     res += 1
+        # return res
