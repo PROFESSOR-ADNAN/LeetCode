@@ -5,15 +5,27 @@ class Solution(object):
         :type k: int
         :rtype: List[List[int]]
         """
-        distance = []
+        minHeap = []
         for x, y in points:
             dis = (x**2) + (y**2)
-            distance.append([dis, x, y])
-        distance.sort()
+            minHeap.append([dis, x, y])
+        heapq.heapify(minHeap)
         ans = []
-        for dis, x, y in distance:
+        while k:
+            dis, x, y = heapq.heappop(minHeap)
             ans.append([x, y])
-        return ans[:k]
+            k -= 1
+        return ans
+
+        # distance = []
+        # for x, y in points:
+        #     dis = (x**2) + (y**2)
+        #     distance.append([dis, x, y])
+        # distance.sort()
+        # ans = []
+        # for dis, x, y in distance:
+        #     ans.append([x, y])
+        # return ans[:k]
 
 
 
