@@ -7,16 +7,35 @@ class Solution(object):
         """
         nums1.sort()
         nums2.sort()
-        l = r = 0
-        res = []
-        while l < len(nums1) and r < len(nums2):
-            if nums1[l] == nums2[r]:
-                res.append(nums1[l])
-                l += 1
-                r += 1
-            elif nums1[l] < nums2[r]:
-                l += 1
+        i, j = 0, 0
+        ans = []
+        while i < len(nums1) and j < len(nums2):
+            if nums1[i] > nums2[j]:
+                j += 1
+            elif nums1[i] < nums2[j]:
+                i += 1
             else:
-                r += 1
-        return res
-            
+                ans.append(nums1[i])
+                i += 1
+                j += 1
+        return ans
+
+
+
+
+
+        # nums1.sort()
+        # nums2.sort()
+
+        # l = r = 0
+        # res = []
+        # while l < len(nums1) and r < len(nums2):
+        #     if nums1[l] == nums2[r]:
+        #         res.append(nums1[l])
+        #         l += 1
+        #         r += 1
+        #     elif nums1[l] < nums2[r]:
+        #         l += 1
+        #     else:
+        #         r += 1
+        # return res
