@@ -4,24 +4,26 @@ class Solution(object):
         :type n: int
         :rtype: bool
         """
-        def isPalindromic(num):
-            l, r = 0, len(num)-1
-            while l < r:
-                if num[l] != num[r]:
-                    return False
-                l += 1
-                r -= 1
-            return True
+        return False
 
-        for i in range(2, n-1):
-            curr = n
-            currStr = ''
-            while curr:
-                r = curr % i
-                curr = curr // i
-                currStr += str(r)
+        # def isPalindromic(num):
+        #     l, r = 0, len(num)-1
+        #     while l < r:
+        #         if num[l] != num[r]:
+        #             return False
+        #         l += 1
+        #         r -= 1
+        #     return True
 
-            if not isPalindromic(currStr):
-                return False
+        # for i in range(2, n-1):
+        #     curr = n
+        #     currStr = ''
+        #     while curr:
+        #         r = curr % i
+        #         curr = curr // i
+        #         currStr += str(r)
 
-        return True
+        #     if not isPalindromic(currStr):
+        #         return False
+
+        # return True
