@@ -13,11 +13,11 @@ class Solution(object):
 
         l, r = 0, len(s)-1
         while l < r:
-            while l < r and s[l].isalnum() == False:
+            while l < r and not s[l].isalnum():
                 l += 1
-            while l < r and s[r].isalnum() == False:
+            while l < r and not s[r].isalnum():
                 r -= 1
-            print(s[l], s[r])
+      
             if s[l].lower() != s[r].lower():
                 return False
             l += 1
