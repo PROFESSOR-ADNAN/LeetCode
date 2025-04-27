@@ -4,18 +4,18 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        def isAlphanumeric(s):
-            if (ord(s) in range(ord('0'), ord('9')+1) or
-                ord(s) in range(ord('A'), ord('Z')+1) or
-                ord(s) in range(ord('a'), ord('z')+1)):
-                return True
-            return False
+        # def isAlphanumeric(s):
+        #     if (ord(s) in range(ord('0'), ord('9')+1) or
+        #         ord(s) in range(ord('A'), ord('Z')+1) or
+        #         ord(s) in range(ord('a'), ord('z')+1)):
+        #         return True
+        #     return False
 
         l, r = 0, len(s)-1
         while l < r:
-            while l < r and isAlphanumeric(s[l]) == False:
+            while l < r and s[l].isalnum() == False:
                 l += 1
-            while l < r and isAlphanumeric(s[r]) == False:
+            while l < r and s[r].isalnum() == False:
                 r -= 1
             print(s[l], s[r])
             if s[l].lower() != s[r].lower():
