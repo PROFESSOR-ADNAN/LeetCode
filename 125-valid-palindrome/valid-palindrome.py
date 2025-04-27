@@ -4,22 +4,47 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        def isPalindrome(s):
-            l, r = 0, len(s)-1
-            while l < r:
-                if s[l] != s[r]:
-                    return False
-                l += 1
-                r -= 1
-            return True
-        newS = ''
-        for i in range(len(s)):
-            if (ord(s[i]) in range(ord('0'), ord('9')+1) or
-                ord(s[i]) in range(ord('A'), ord('Z')+1) or
-                ord(s[i]) in range(ord('a'), ord('z')+1)):
-                newS += s[i].lower()
+        def isAlphanumeric(s):
+            if (ord(s) in range(ord('0'), ord('9')+1) or
+                ord(s) in range(ord('A'), ord('Z')+1) or
+                ord(s) in range(ord('a'), ord('z')+1)):
+                return True
+            return False
 
-        return isPalindrome(newS)
+        l, r = 0, len(s)-1
+        while l < r:
+            while l < r and isAlphanumeric(s[l]) == False:
+                l += 1
+            while l < r and isAlphanumeric(s[r]) == False:
+                r -= 1
+            print(s[l], s[r])
+            if s[l].lower() != s[r].lower():
+                return False
+            l += 1
+            r -= 1
+        return True
+
+
+
+
+
+
+        # def isPalindrome(s):
+        #     l, r = 0, len(s)-1
+        #     while l < r:
+        #         if s[l] != s[r]:
+        #             return False
+        #         l += 1
+        #         r -= 1
+        #     return True
+        # newS = ''
+        # for i in range(len(s)):
+        #     if (ord(s[i]) in range(ord('0'), ord('9')+1) or
+        #         ord(s[i]) in range(ord('A'), ord('Z')+1) or
+        #         ord(s[i]) in range(ord('a'), ord('z')+1)):
+        #         newS += s[i].lower()
+
+        # return isPalindrome(newS)
 
 
 
