@@ -5,25 +5,42 @@ class Solution(object):
         :type k: int
         :rtype: float
         """
-        l = 0
-        window = 0
-        for i in range(k):
-            window += nums[i]
-        r = k
-        maxAverage = float('-inf')
-        maxAverage = max(maxAverage, float(window) / float(k))
+        currSum = sum(nums[:k])
+        maxSum = currSum
+        l, r = 0, k
         while r < len(nums):
-            window += nums[r]
-            window -= nums[l]
-            r += 1
+            currSum += nums[r]
+            currSum -= nums[l]
             l += 1
-            
-            maxAverage = max(maxAverage, float(window) / float(k))
+            r += 1
+
+            if currSum > maxSum:
+                maxSum = currSum
+
+        return maxSum / (k * 1.0)
+
+
+
+
+
+
+        # l = 0
+        # window = 0
+        # for i in range(k):
+        #     window += nums[i]
+        # r = k
+        # maxAverage = float('-inf')
+        # maxAverage = max(maxAverage, float(window) / float(k))
+        # while r < len(nums):
+        #     window += nums[r]
+        #     window -= nums[l]
+        #     r += 1
+        #     l += 1
+
+        #     maxAverage = max(maxAverage, float(window) / float(k))
 
         
-        return maxAverage
-
-
+        # return maxAverage
 
 
         # maxVal = -1 * float('inf')
