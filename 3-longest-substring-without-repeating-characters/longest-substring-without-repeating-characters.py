@@ -4,21 +4,32 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        unique = set()
+        unique = {}
         maxCount = 0
         l, r = 0, 0
         while r < len(s):
-            while s[r] in unique:
-                unique.remove(s[l])
-                l += 1
-            unique.add(s[r])
+            if s[r] in unique and l <= unique[s[r]]:
+                l = unique[s[r]] + 1
+                del unique[s[r]]
+
+            unique[s[r]] = r
             maxCount = max(maxCount, r-l+1)
             r += 1
 
         return maxCount
 
+        # unique = set()
+        # maxCount = 0
+        # l, r = 0, 0
+        # while r < len(s):
+        #     while s[r] in unique:
+        #         unique.remove(s[l])
+        #         l += 1
+        #     unique.add(s[r])
+        #     maxCount = max(maxCount, r-l+1)
+        #     r += 1
 
-
+        # return maxCount
 
 
         # maxCount = 0
@@ -34,8 +45,6 @@ class Solution(object):
         #     maxCount = max(maxCount, count)
 
         # return maxCount
-
-
 
 
         # max_len = 0
