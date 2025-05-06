@@ -5,6 +5,9 @@ class NumArray(object):
         :type nums: List[int]
         """
         self.nums = nums
+        for i in range(1, len(nums)):
+            nums[i] += nums[i-1]
+        
 
 
     def sumRange(self, left, right):
@@ -13,7 +16,12 @@ class NumArray(object):
         :type right: int
         :rtype: int
         """
-        return sum(self.nums[left:right+1])
+        # return sum(self.nums[left:right+1])
+        if left:
+            return self.nums[right] - self.nums[left-1]
+        return self.nums[right]
+        
+   
         
 
 
