@@ -4,20 +4,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        prefix_left = []
-        prefix_right = [0] * len(nums)
+        Rprefix = nums[:]
 
-        temp = 0
-        for num in nums:
-            temp += num
-            prefix_left.append(temp)
+        for i in range(len(nums)-2, -1, -1):
+            Rprefix[i] += Rprefix[i+1]
 
-        temp = 0
-        for i in range(len(nums)-1, -1, -1):
-            temp += nums[i]
-            prefix_right[i] = temp
+        for i in range(1, len(nums)):
+            nums[i] += nums[i-1]
 
         for i in range(len(nums)):
-            if prefix_left[i] == prefix_right[i]:
+            if Rprefix[i] == nums[i]:
                 return i
         return -1
