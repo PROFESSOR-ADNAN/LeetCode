@@ -4,18 +4,42 @@ class Solution(object):
         :type strs: List[str]
         :rtype: str
         """
-        minL = float('inf')
-        for s in strs:
-            if len(s) < minL:
-                minL = len(s)
-
-        prefix = ''
+        minL = float("inf")
+        for st in strs:
+            if len(st) < minL:
+                minL = len(st)
+        common_prefix_set = set()
+        common_prefix = ""
         for i in range(minL):
-            prefix += strs[0][i]
-            for s in strs:
-                if prefix[i] != s[i]:
-                    return prefix[:i]
-        return prefix
+            for st in strs:
+                common_prefix_set.add(st[i])
+            if len(common_prefix_set) > 1:
+                break
+            else:
+                prefix = common_prefix_set.pop()
+                common_prefix += prefix
+
+        return common_prefix
+
+
+
+
+
+
+
+
+        # minL = float('inf')
+        # for s in strs:
+        #     if len(s) < minL:
+        #         minL = len(s)
+
+        # prefix = ''
+        # for i in range(minL):
+        #     prefix += strs[0][i]
+        #     for s in strs:
+        #         if prefix[i] != s[i]:
+        #             return prefix[:i]
+        # return prefix
                 
 
 
