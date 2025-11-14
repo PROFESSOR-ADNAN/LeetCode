@@ -7,15 +7,24 @@ class Solution(object):
         :rtype: bool
         """
         for num in range(left, right+1):
-            covered = False
             for x, y in ranges:
                 if x <= num <= y:
-                    covered = True
                     break
-            if not covered:
+            else:
                 return False
-
         return True
+
+
+        # for num in range(left, right+1):
+        #     covered = False
+        #     for x, y in ranges:
+        #         if x <= num <= y:
+        #             covered = True
+        #             break
+        #     if not covered:
+        #         return False
+
+        # return True
 
 
 
