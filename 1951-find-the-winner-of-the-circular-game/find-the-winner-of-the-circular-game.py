@@ -5,11 +5,28 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        def helper(n, k):
-            if n == 1:
-                return 0
-            return (helper(n-1, k) + k) % n
-        return helper(n, k) + 1
+        players = [i for i in range(1, n+1)]
+
+        index = 0
+        while len(players) > 1:
+            index = (index + k - 1) % len(players)
+            players.pop(index)
+        
+        return players[0]
+
+
+
+
+
+
+
+
+
+        # def helper(n, k):
+        #     if n == 1:
+        #         return 0
+        #     return (helper(n-1, k) + k) % n
+        # return helper(n, k) + 1
 
         # q = deque()
         # for i in range(1, n+1):
