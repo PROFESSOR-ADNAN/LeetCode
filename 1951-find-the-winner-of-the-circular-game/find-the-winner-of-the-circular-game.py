@@ -5,21 +5,36 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        players = [i for i in range(1, n+1)]
+        arr = [num for num in range(1, n+1)]
+        while len(arr) > 1:
+            for i in range(k-1):
+                arr.append(arr.pop(0))
+            arr.pop(0)
+        return arr[0]
 
-        index = 0
-        while len(players) > 1:
-            index = (index + k - 1) % len(players)
-            players.pop(index)
+
+
+
+
+
+
+        # q = deque(range(1, n+1))
+
+        # while len(q) > 1:
+        #     for _ in range(k-1):
+        #         q.append(q.popleft())
+        #     q.popleft()
+
+        # return q[0]
+
+        # players = [i for i in range(1, n+1)]
+
+        # index = 0
+        # while len(playindexers) > 1:
+        #     index = ( + k - 1) % len(players)
+        #     players.pop(index)
         
-        return players[0]
-
-
-
-
-
-
-
+        # return players[0]
 
 
         # def helper(n, k):
