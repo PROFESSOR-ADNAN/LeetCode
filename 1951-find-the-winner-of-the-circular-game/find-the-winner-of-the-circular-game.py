@@ -6,11 +6,19 @@ class Solution(object):
         :rtype: int
         """
         arr = [num for num in range(1, n+1)]
+        ind = 0
         while len(arr) > 1:
-            for i in range(k-1):
-                arr.append(arr.pop(0))
-            arr.pop(0)
+            ind = (ind + k - 1) % len(arr)
+            arr.pop(ind)
         return arr[0]
+
+
+        # arr = [num for num in range(1, n+1)]
+        # while len(arr) > 1:
+        #     for i in range(k-1):
+        #         arr.append(arr.pop(0))
+        #     arr.pop(0)
+        # return arr[0]
 
 
 
