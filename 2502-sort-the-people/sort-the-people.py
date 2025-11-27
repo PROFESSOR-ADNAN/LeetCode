@@ -5,15 +5,25 @@ class Solution(object):
         :type heights: List[int]
         :rtype: List[str]
         """
-        for i in range(len(names)-1):
-            min_ind = i
-            for j in range(i+1, len(names)):
-                if heights[j] > heights[min_ind]:
-                    min_ind = j
-            if min_ind != i:
-                heights[i], heights[min_ind] = heights[min_ind], heights[i]
-                names[i], names[min_ind] = names[min_ind], names[i]
+        for i in range(1, len(heights)):
+            for j in range(i, 0, -1):
+                if heights[j-1] < heights[j]:
+                    heights[j], heights[j-1] = heights[j-1], heights[j]
+                    names[j], names[j-1] = names[j-1], names[j]
         return names
+
+
+
+
+        # for i in range(len(names)-1):
+        #     min_ind = i
+        #     for j in range(i+1, len(names)):
+        #         if heights[j] > heights[min_ind]:
+        #             min_ind = j
+        #     if min_ind != i:
+        #         heights[i], heights[min_ind] = heights[min_ind], heights[i]
+        #         names[i], names[min_ind] = names[min_ind], names[i]
+        # return names
 
 
         # combine = list(zip(names, heights))
