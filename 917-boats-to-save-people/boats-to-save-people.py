@@ -11,10 +11,9 @@ class Solution(object):
         while l <= r:
             if people[r] < limit and people[l] <= limit - people[r]:
                 boats += 1
-                r -= 1
                 l += 1
             else:
                 boats += 1
-                r -= 1
+            r -= 1
 
         return boats
