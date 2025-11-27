@@ -9,7 +9,7 @@ class Solution(object):
         boats = 0
         l, r = 0, len(people)-1
         while l <= r:
-            if l < r and people[r] < limit and people[l] <= limit - people[r]:
+            if people[r] < limit and people[l] <= limit - people[r]:
                 boats += 1
                 r -= 1
                 l += 1
