@@ -6,18 +6,35 @@ class Solution(object):
         """
         skill.sort()
         l, r = 0, len(skill)-1
+        initial_val = skill[l] + skill[r]
+        chemistry = 0
 
-        res = []
         while l < r:
-            res.append((skill[l], skill[r]))
+            if skill[l] + skill[r] != initial_val:
+                return -1
+            chemistry += (skill[l] * skill[r])
             l += 1
             r -= 1
-        
-        val = res[0][0] + res[0][1]
-        chemistry = 0
-        for a1, a2 in res:
-            if a1 + a2 != val:
-                return -1
-            chemistry += (a1 * a2)
-        
+            
         return chemistry
+
+
+
+
+        # skill.sort()
+        # l, r = 0, len(skill)-1
+
+        # res = []
+        # while l < r:
+        #     res.append((skill[l], skill[r]))
+        #     l += 1
+        #     r -= 1
+        
+        # val = res[0][0] + res[0][1]
+        # chemistry = 0
+        # for a1, a2 in res:
+        #     if a1 + a2 != val:
+        #         return -1
+        #     chemistry += (a1 * a2)
+        
+        # return chemistry
