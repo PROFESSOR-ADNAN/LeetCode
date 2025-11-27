@@ -4,12 +4,31 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        ind = 1
-        for i in range(1, len(nums)):
-            if nums[i] != nums[i-1]:
-                nums[ind] = nums[i]
-                ind += 1
-        return ind
+        l = 0
+        for r in range(1, len(nums)):
+            if nums[r] != nums[l]:
+                l += 1
+                nums[l] = nums[r]
+        return l+1
+            
+
+
+
+
+
+
+
+
+
+
+
+
+        # ind = 1
+        # for i in range(1, len(nums)):
+        #     if nums[i] != nums[i-1]:
+        #         nums[ind] = nums[i]
+        #         ind += 1
+        # return ind
 
         # newNums= []
         # for i in range(len(nums)):
