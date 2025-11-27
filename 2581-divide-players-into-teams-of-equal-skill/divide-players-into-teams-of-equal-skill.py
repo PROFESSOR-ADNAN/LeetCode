@@ -4,19 +4,37 @@ class Solution(object):
         :type skill: List[int]
         :rtype: int
         """
-        skill.sort()
-        l, r = 0, len(skill)-1
-        initial_val = skill[l] + skill[r]
+        total = sum(skill)
+        target = total // (len(skill)/2)
+
+        count = Counter(skill)
         chemistry = 0
 
-        while l < r:
-            if skill[l] + skill[r] != initial_val:
+        for c in skill:
+            if not count[c]:
+                continue
+            count[c] -= 1
+            if not count[target-c]:
                 return -1
-            chemistry += (skill[l] * skill[r])
-            l += 1
-            r -= 1
-            
+            count[target-c] -= 1
+
+            chemistry += (c * (target-c))
         return chemistry
+
+
+        # skill.sort()
+        # l, r = 0, len(skill)-1
+        # initial_val = skill[l] + skill[r]
+        # chemistry = 0
+
+        # while l < r:
+        #     if skill[l] + skill[r] != initial_val:
+        #         return -1
+        #     chemistry += (skill[l] * skill[r])
+        #     l += 1
+        #     r -= 1
+
+        # return chemistry
 
 
 
