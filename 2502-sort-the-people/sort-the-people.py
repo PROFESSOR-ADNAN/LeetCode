@@ -6,11 +6,31 @@ class Solution(object):
         :rtype: List[str]
         """
         for i in range(1, len(heights)):
+            height = heights[i]
+            name = names[i]
+            ind = i
             for j in range(i, 0, -1):
-                if heights[j-1] < heights[j]:
-                    heights[j], heights[j-1] = heights[j-1], heights[j]
-                    names[j], names[j-1] = names[j-1], names[j]
+                if heights[j-1] < height:
+                    heights[j] = heights[j-1]
+                    names[j] = names[j-1]
+                    ind -= 1
+                else:
+                    break
+            if i != ind:
+                heights[ind] = height
+                names[ind] = name
         return names
+
+
+
+        # for i in range(1, len(heights)):
+        #     for j in range(i, 0, -1):
+        #         if heights[j-1] < heights[j]:
+        #             heights[j], heights[j-1] = heights[j-1], heights[j]
+        #             names[j], names[j-1] = names[j-1], names[j]
+        #         else:
+        #             break
+        # return names
 
 
 
