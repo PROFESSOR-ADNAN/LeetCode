@@ -8,18 +8,33 @@ class Solution(object):
         for i in range(1, len(heights)):
             height = heights[i]
             name = names[i]
-            ind = i
-            for j in range(i, 0, -1):
-                if heights[j-1] < height:
-                    heights[j] = heights[j-1]
-                    names[j] = names[j-1]
-                    ind -= 1
-                else:
-                    break
-            if i != ind:
-                heights[ind] = height
-                names[ind] = name
+            j = i-1
+            while j >= 0 and height > heights[j]:
+                heights[j+1] = heights[j]
+                names[j+1] = names[j]
+                j -= 1
+            if j+1 != i:
+                heights[j+1] = height
+                names[j+1] = name
+        
         return names
+
+
+        # for i in range(1, len(heights)):
+        #     height = heights[i]
+        #     name = names[i]
+        #     ind = i
+        #     for j in range(i, 0, -1):
+        #         if heights[j-1] < height:
+        #             heights[j] = heights[j-1]
+        #             names[j] = names[j-1]
+        #             ind -= 1
+        #         else:
+        #             break
+        #     if i != ind:
+        #         heights[ind] = height
+        #         names[ind] = name
+        # return names
 
 
 
