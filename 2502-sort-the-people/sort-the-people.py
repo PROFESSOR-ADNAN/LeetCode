@@ -5,25 +5,49 @@ class Solution(object):
         :type heights: List[int]
         :rtype: List[str]
         """
-        zipped = list(zip(heights, names))
+        heightToName = {}
+        for i in range(len(heights)):
+            heightToName[heights[i]] = names[i]
+        
         max_ = max(heights)
         min_ = min(heights)
+
         count = [0] * (max_ - min_ + 1)
-        count_name = [""] * (max_ - min_ + 1)
-
-        for height, name in zipped:
+        for height in heights:
             count[height-min_] += 1
-            count_name[height-min_] = name
+        
+        target = 0
+        for index, value in enumerate(count):
+            for i in range(value):
+                heights[target] = index + min_
+                target += 1
+        
+        for i in range(len(heights)):
+            names[i] = heightToName[heights[i]]
 
-        ans_heights = []
-        ans_names = []
-        for i in range(len(count)):
-            while count[i] > 0:
-                ans_heights.append(i+min_)
-                ans_names.append(count_name[i])
-                count[i] -= 1
+        return names[::-1]
 
-        return ans_names[::-1]
+
+
+        # zipped = list(zip(heights, names))
+        # max_ = max(heights)
+        # min_ = min(heights)
+        # count = [0] * (max_ - min_ + 1)
+        # count_name = [""] * (max_ - min_ + 1)
+
+        # for height, name in zipped:
+        #     count[height-min_] += 1
+        #     count_name[height-min_] = name
+
+        # ans_heights = []
+        # ans_names = []
+        # for i in range(len(count)):
+        #     while count[i] > 0:
+        #         ans_heights.append(i+min_)
+        #         ans_names.append(count_name[i])
+        #         count[i] -= 1
+
+        # return ans_names[::-1]
 
         # for i in range(1, len(heights)):
         #     height = heights[i]
