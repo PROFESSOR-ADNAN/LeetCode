@@ -5,19 +5,39 @@ class Solution(object):
         :type heights: List[int]
         :rtype: List[str]
         """
-        for i in range(1, len(heights)):
-            height = heights[i]
-            name = names[i]
-            j = i-1
-            while j >= 0 and height > heights[j]:
-                heights[j+1] = heights[j]
-                names[j+1] = names[j]
-                j -= 1
-            if j+1 != i:
-                heights[j+1] = height
-                names[j+1] = name
+        zipped = list(zip(heights, names))
+        max_ = max(heights)
+        min_ = min(heights)
+        count = [0] * (max_ - min_ + 1)
+        count_name = [""] * (max_ - min_ + 1)
+
+        for height, name in zipped:
+            count[height-min_] += 1
+            count_name[height-min_] = name
+
+        ans_heights = []
+        ans_names = []
+        for i in range(len(count)):
+            while count[i] > 0:
+                ans_heights.append(i+min_)
+                ans_names.append(count_name[i])
+                count[i] -= 1
+
+        return ans_names[::-1]
+
+        # for i in range(1, len(heights)):
+        #     height = heights[i]
+        #     name = names[i]
+        #     j = i-1
+        #     while j >= 0 and height > heights[j]:
+        #         heights[j+1] = heights[j]
+        #         names[j+1] = names[j]
+        #         j -= 1
+        #     if j+1 != i:
+        #         heights[j+1] = height
+        #         names[j+1] = name
         
-        return names
+        # return names
 
 
         # for i in range(1, len(heights)):
