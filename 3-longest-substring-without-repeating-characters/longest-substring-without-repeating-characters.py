@@ -4,19 +4,34 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        unique = {}
-        maxCount = 0
-        l, r = 0, 0
-        while r < len(s):
-            if s[r] in unique and l <= unique[s[r]]:
-                l = unique[s[r]] + 1
-                del unique[s[r]]
+        max_len = 0
+        for i in range(len(s)):
+            unique_set = set()
+            j = i
+            while j < len(s) and s[j] not in unique_set:
+                unique_set.add(s[j])
+                max_len = max(max_len, j-i+1)
+                j += 1
+        
+        return max_len
 
-            unique[s[r]] = r
-            maxCount = max(maxCount, r-l+1)
-            r += 1
 
-        return maxCount
+
+
+
+        # unique = {}
+        # maxCount = 0
+        # l, r = 0, 0
+        # while r < len(s):
+        #     if s[r] in unique and l <= unique[s[r]]:
+        #         l = unique[s[r]] + 1
+        #         # del unique[s[r]]
+
+        #     unique[s[r]] = r
+        #     maxCount = max(maxCount, r-l+1)
+        #     r += 1
+
+        # return maxCount
 
         # unique = set()
         # maxCount = 0
