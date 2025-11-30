@@ -5,23 +5,58 @@ class Solution(object):
         :type k: int
         :rtype: float
         """
-        currSum = sum(nums[:k])
-        maxSum = currSum
-        l, r = 0, k
-        while r < len(nums):
-            currSum += nums[r]
-            currSum -= nums[l]
+        window = sum(nums[:k])
+        max_sum = window
+        l = 0
+        for r in range(k, len(nums)):
+            window -= nums[l]
+            window += nums[r]
+            
+            max_sum = max(max_sum, window)
+
             l += 1
-            r += 1
-
-            if currSum > maxSum:
-                maxSum = currSum
-
-        return maxSum / (k * 1.0)
+        
+        return max_sum / float(k)
 
 
 
 
+        # max_sum = -1 * float("inf")
+        # for i in range(len(nums)-k+1):
+        #     cur_sum = 0            
+        #     for j in range(i, i+k):
+        #         cur_sum += nums[j]
+
+        #     max_sum = max(max_sum, cur_sum)
+
+        
+        # return float(max_sum) / float(k)
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # currSum = sum(nums[:k])
+        # maxSum = currSum
+        # l, r = 0, k
+        # while r < len(nums):
+        #     currSum += nums[r]
+        #     currSum -= nums[l]
+        #     l += 1
+        #     r += 1
+
+        #     if currSum > maxSum:
+        #         maxSum = currSum
+
+        # return maxSum / (k * 1.0)
 
 
         # l = 0
