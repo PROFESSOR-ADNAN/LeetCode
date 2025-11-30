@@ -5,27 +5,49 @@ class Solution(object):
         :type heights: List[int]
         :rtype: List[str]
         """
-        heightToName = {}
-        for i in range(len(heights)):
-            heightToName[heights[i]] = names[i]
+        nameToHeight = list(zip(names, heights))
+        nameToHeight.sort(key = lambda element: element[1], reverse = True)
+        names = [element[0] for element in nameToHeight]
         
-        max_ = max(heights)
-        min_ = min(heights)
+        return names
 
-        count = [0] * (max_ - min_ + 1)
-        for height in heights:
-            count[height-min_] += 1
-        
-        target = 0
-        for index, value in enumerate(count):
-            for i in range(value):
-                heights[target] = index + min_
-                target += 1
-        
-        for i in range(len(heights)):
-            names[i] = heightToName[heights[i]]
+            
 
-        return names[::-1]
+
+
+        # this doesn't work if the names array has a duplicate element or name
+        # nameToHeight = {}
+        # for i in range(len(names)):
+        #     nameToHeight[names[i]] = heights[i]
+
+        # print(nameToHeight)
+        # names.sort(key = lambda name: nameToHeight[name], reverse=True)
+
+        # return names
+
+
+
+        # heightToName = {}
+        # for i in range(len(heights)):
+        #     heightToName[heights[i]] = names[i]
+        
+        # max_ = max(heights)
+        # min_ = min(heights)
+
+        # count = [0] * (max_ - min_ + 1)
+        # for height in heights:
+        #     count[height-min_] += 1
+        
+        # target = 0
+        # for index, value in enumerate(count):
+        #     for i in range(value):
+        #         heights[target] = index + min_
+        #         target += 1
+        
+        # for i in range(len(heights)):
+        #     names[i] = heightToName[heights[i]]
+
+        # return names[::-1]
 
 
 
