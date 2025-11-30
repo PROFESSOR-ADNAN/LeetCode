@@ -5,15 +5,28 @@ class Solution(object):
         :rtype: int
         """
         max_len = 0
-        for i in range(len(s)):
-            unique_set = set()
-            j = i
-            while j < len(s) and s[j] not in unique_set:
-                unique_set.add(s[j])
-                max_len = max(max_len, j-i+1)
-                j += 1
-        
+        unique_set = set()
+        l = 0
+        for r in range(len(s)):
+            while s[r] in unique_set:
+                unique_set.remove(s[l])
+                l += 1
+            unique_set.add(s[r])
+            max_len = max(max_len, r-l+1)
+
         return max_len
+
+
+        # max_len = 0
+        # for i in range(len(s)):
+        #     unique_set = set()
+        #     j = i
+        #     while j < len(s) and s[j] not in unique_set:
+        #         unique_set.add(s[j])
+        #         max_len = max(max_len, j-i+1)
+        #         j += 1
+        
+        # return max_len
 
 
 
