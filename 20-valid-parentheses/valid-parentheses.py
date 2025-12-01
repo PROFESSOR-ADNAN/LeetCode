@@ -4,18 +4,33 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        mpp = {")":"(", "}":"{", "]":"["}
+        mapp = {")": "(", "]": "[", "}": "{"}
         stack = []
-        for c in s:
-            if c in mpp:
-                if stack and stack[-1] == mpp[c]:
-                    stack.pop()
+        for bracket in s:
+            if bracket not in mapp:
+                stack.append(bracket)
+            else:
+                if stack:
+                    last_bracket_in_stack = stack.pop()
+                    if mapp[bracket] != last_bracket_in_stack:
+                        return False
                 else:
                     return False
-            else:
-                stack.append(c)
-
         return True if not stack else False
+                
+
+        # mpp = {")":"(", "}":"{", "]":"["}
+        # stack = []
+        # for c in s:
+        #     if c in mpp:
+        #         if stack and stack[-1] == mpp[c]:
+        #             stack.pop()
+        #         else:
+        #             return False
+        #     else:
+        #         stack.append(c)
+
+        # return True if not stack else False
 
             
 
