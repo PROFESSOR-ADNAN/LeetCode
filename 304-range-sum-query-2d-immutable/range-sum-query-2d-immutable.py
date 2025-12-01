@@ -6,11 +6,10 @@ class NumMatrix(object):
         """
         self.matrix = matrix
         R, C = len(matrix), len(matrix[0])
-        self.prefix = [[0 for _ in range(C+1)] for _ in range(R+1)]
-        for i in range(1, R+1):
-            for j in range(1, C+1):
-                self.prefix[i][j] = matrix[i-1][j-1] + self.prefix[i-1][j] + self.prefix[i][j-1] - self.prefix[i-1][j-1]
-        
+        self.prefixSum = [[0] * (C+1) for _ in range(R+1)]
+        for r in range(R):
+            for c in range(C):
+                self.prefixSum[r+1][c+1] = self.prefixSum[r][c+1] + self.prefixSum[r+1][c] - self.prefixSum[r][c] + self.matrix[r][c]
 
     def sumRegion(self, row1, col1, row2, col2):
         """
@@ -20,7 +19,7 @@ class NumMatrix(object):
         :type col2: int
         :rtype: int
         """
-        ans = self.prefix[row2+1][col2+1] - self.prefix[row1][col2+1] - self.prefix[row2+1][col1] + self.prefix[row1][col1]
+        ans = self.prefixSum[row2+1][col2+1] - self.prefixSum[row1][col2+1] - self.prefixSum[row2+1][col1] + self.prefixSum[row1][col1]
         return ans
         
 
