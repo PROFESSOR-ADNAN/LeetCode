@@ -4,15 +4,44 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        total = sum(nums)
-        left = 0
+        forward = [0] * len(nums)
+        backward = [0] * len(nums)
 
-        for i, num in enumerate(nums):
-            total -= num
-            if total == left:
+        cur = 0
+        for i in range(len(nums)):
+            cur += nums[i]
+            forward[i] = cur
+        
+        cur = 0
+        for i in range(len(nums)-1, -1, -1):
+            cur += nums[i]
+            backward[i] = cur
+
+        for i in range(len(nums)):
+            if forward[i] == backward[i]:
                 return i
-            left += num
         return -1
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+        # total = sum(nums)
+        # left = 0
+
+        # for i, num in enumerate(nums):
+        #     total -= num
+        #     if total == left:
+        #         return i
+        #     left += num
+        # return -1
         
         # Rprefix = nums[:]
 
