@@ -4,22 +4,39 @@ class Solution(object):
         :type path: str
         :rtype: str
         """
-        path = list(path.split("/"))
+        path = path.split("/")
         stack = []
-
+        
         for path in path:
+            if path == "" or path == ".":
+                continue
+            
             if path == "..":
                 if stack:
                     stack.pop()
-            elif path == ".":
-                continue
-            elif path:
+            else:
                 stack.append(path)
-        ans = "/"
-        for path in stack:
-            ans += path + "/"
 
-        return ans[:-1] if len(ans) > 1 else ans
+        return "/" + "/".join(stack)
+
+
+
+        # path = list(path.split("/"))
+        # stack = []
+
+        # for path in path:
+        #     if path == "..":
+        #         if stack:
+        #             stack.pop()
+        #     elif path == ".":
+        #         continue
+        #     elif path:
+        #         stack.append(path)
+        # ans = "/"
+        # for path in stack:
+        #     ans += path + "/"
+
+        # return ans[:-1] if len(ans) > 1 else ans
 
         # stack = []
         # i = 0
