@@ -5,12 +5,21 @@ class Solution(object):
         :rtype: str
         """
         stack = []
-        for itm in s:
-            if itm == "*":
+        for s in s:
+            if stack and s == "*":
                 stack.pop()
             else:
-                stack.append(itm)
-        s = ""
-        for elem in stack:
-            s += elem
-        return s
+                stack.append(s)
+        return "".join(stack)
+        
+
+        # stack = []
+        # for itm in s:
+        #     if itm == "*":
+        #         stack.pop()
+        #     else:
+        #         stack.append(itm)
+        # s = ""
+        # for elem in stack:
+        #     s += elem
+        # return s
