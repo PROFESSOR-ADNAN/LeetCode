@@ -4,29 +4,18 @@ class Solution(object):
         :type n: int
         :rtype: bool
         """
-        num = 1
-        while num <= n:
-            if num == n:
-                return True
-            num *= 4
-
-        if num == n: return True 
-        else: return False
+        if n == 1:
+            return True
+        if n % 4 != 0 or n < 1:
+            return False
+        return self.isPowerOfFour(n/4)
 
 
-
-        # x = 0
-        # num = 4
-        # while (num ** x) <= n:
-        #     if (num ** x) == n:
+        # def power_of_4(n):
+        #     if n == 1:
         #         return True
-        #     x += 1
+        #     if n < 1:
+        #         return False
+        #     return power_of_4(n/4)
 
-        # return False
-      
-      
-        # if n == 1:
-        #     return True
-        # if n == 0 or n % 4 != 0:
-        #     return False
-        # return self.isPowerOfFour(n//4)
+        # return power_of_4(n)
