@@ -4,22 +4,25 @@ class Solution(object):
         :type n: int
         :rtype: bool
         """
-        x = 0
-        num = 4
-        while (num ** x) <= n:
-            if (num ** x) == n:
+        num = 1
+        while num <= n:
+            if num == n:
                 return True
-            x += 1
-        
-        return False
-      
-      
-      
-      
-      
-      
-      
-      
+            num *= 4
+
+        if num == n: return True 
+        else: return False
+
+
+
+        # x = 0
+        # num = 4
+        # while (num ** x) <= n:
+        #     if (num ** x) == n:
+        #         return True
+        #     x += 1
+
+        # return False
       
       
         # if n == 1:
