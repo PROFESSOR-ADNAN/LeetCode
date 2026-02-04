@@ -1,107 +1,20 @@
-class Solution(object):
-    def longestCommonPrefix(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: str
-        """
-        prefix = strs[0]
-        prefix_len = len(prefix)
-        for i in range(1, len(strs)):
-            while prefix != strs[i][0:prefix_len]:
-                prefix = prefix[0:len(prefix)-1]
-                prefix_len -= 1
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        answer = ""
+
+        min_len = float("inf")
+        for word in strs:
+            if len(word) < min_len:
+                min_len = len(word)
         
-        return prefix
+        for ind in range(min_len):
+            curr_letter = set()
+            for word in strs:
+                curr_letter.add(word[ind])
+            
+            if len(curr_letter) == 1:
+                answer += curr_letter.pop()
+            else:
+                break
 
-
-        # minL = float("inf")
-        # for st in strs:
-        #     if len(st) < minL:
-        #         minL = len(st)
-        # common_prefix_set = set()
-        # common_prefix = ""
-        # for i in range(minL):
-        #     for st in strs:
-        #         common_prefix_set.add(st[i])
-        #     if len(common_prefix_set) > 1:
-        #         break
-        #     else:
-        #         prefix = common_prefix_set.pop()
-        #         common_prefix += prefix
-
-        # return common_prefix
-
-
-
-
-
-
-
-
-        # minL = float('inf')
-        # for s in strs:
-        #     if len(s) < minL:
-        #         minL = len(s)
-
-        # prefix = ''
-        # for i in range(minL):
-        #     prefix += strs[0][i]
-        #     for s in strs:
-        #         if prefix[i] != s[i]:
-        #             return prefix[:i]
-        # return prefix
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        # commonPrefix = []
-
-        # if strs == [""]:
-        #     checker1 = ""
-        # else:
-        #     checker1 = strs[0][0]
-
-        # print(checker1)
-        # checker2 = ""
-        # index = 0
-
-        # length = 200
-
-        # for str in strs:
-        #     if len(str) < length:
-        #         length = len(str)
-        #         print(length)
-        # print(length)
-
-        # while index <= length - 1:
-        #     for str in strs:
-        #         checker2 = str[index]
-        #         print(checker2)
-        #         if checker2 != checker1:
-        #             break
-        #     if checker2 == checker1:
-        #         commonPrefix.append(checker2)
-        #         index += 1
-        #         try:
-        #             checker1 = strs[0][index]
-        #         except IndexError:
-        #             print("index out of range")
-        #         print(index)
-        #     else:
-        #         break
-
-        # longestCommonPrefix = ''.join(commonPrefix) 
-        # return(longestCommonPrefix)
+        return answer
