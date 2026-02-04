@@ -1,54 +1,34 @@
-class Solution(object):
-    def isCovered(self, ranges, left, right):
-        """
-        :type ranges: List[List[int]]
-        :type left: int
-        :type right: int
-        :rtype: bool
-        """
-        for num in range(left, right+1):
-            for x, y in ranges:
-                if x <= num <= y:
-                    break
-            else:
-                return False
-        return True
+class Solution:
+    def isCovered(self, ranges: List[List[int]], left: int, right: int) -> bool:
+        # // considers the entires interval to be valid for left and right
 
-
-        # for num in range(left, right+1):
-        #     covered = False
-        #     for x, y in ranges:
-        #         if x <= num <= y:
-        #             covered = True
-        #             break
-        #     if not covered:
-        #         return False
-
-        # return True
-
-
-
-
-
-
-
-
-
-
-
-
-        # for i in range(len(ranges)):
-        #     x, y = ranges[i][0], ranges[i][1]
-        #     print(x, y)
-        #     if left == x:
-        #         left += 1
-        #     if left == y:
-        #         left += 1
-        #     print("first", left)
-        #     if left >= right + 1:
-        #         print("yes")
-        #         return True
-        #     print(left)
-
+        # ranges.sort()
+        # print(ranges)
+        # if (left >= ranges[0][0] and 
+        #     right <= ranges[-1][1]):
+        #     return True
         # return False
+
+        # for start, end in ranges:
+        #     if left >= start and right <= end:
+        #         return True
+        
+        # return False
+
+        ranges.sort()
+        ind = 0
+        for val in range(left, right+1):
+            found = False
+            while ind < len(ranges):
+                if val < ranges[ind][0]:
+                    return False
+                elif ranges[ind][0] <= val <= ranges[ind][1]:
+                    found = True
+                    break
+                else:
+                    found = False
+                    ind += 1
+
+        return True if found else False
+
         
