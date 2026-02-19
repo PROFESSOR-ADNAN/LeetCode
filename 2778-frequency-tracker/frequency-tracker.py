@@ -7,12 +7,24 @@ class FrequencyTracker:
 
     def add(self, number: int) -> None:
         # self.frequency_tracker.append(number)
-        if number in self.numberToFrequency:
-            self.frequencyToCount[self.numberToFrequency[number]] -= 1
-            if self.frequencyToCount[self.numberToFrequency[number]] == 0:
-                del self.frequencyToCount[self.numberToFrequency[number]]
-        self.numberToFrequency[number] += 1
-        self.frequencyToCount[self.numberToFrequency[number]] += 1
+
+        # if number in self.numberToFrequency:
+        #     self.frequencyToCount[self.numberToFrequency[number]] -= 1
+        #     if self.frequencyToCount[self.numberToFrequency[number]] == 0:
+        #         del self.frequencyToCount[self.numberToFrequency[number]]
+        # self.numberToFrequency[number] += 1
+        # self.frequencyToCount[self.numberToFrequency[number]] += 1
+
+        numberDict = self.numberToFrequency
+        freqDict = self.frequencyToCount
+
+        if number in numberDict:
+            freqDict[numberDict[number]] -= 1
+            if freqDict[numberDict[number]] == 0:
+                del freqDict[numberDict[number]]
+        numberDict[number] += 1
+        freqDict[numberDict[number]] += 1
+
 
     def deleteOne(self, number: int) -> None:
         # if number in self.frequency_tracker:
@@ -21,16 +33,19 @@ class FrequencyTracker:
         #         i -= 1
         #     self.frequency_tracker.pop(i)
 
+        numberDict = self.numberToFrequency
+        freqDict = self.frequencyToCount
 
-        self.frequencyToCount[self.numberToFrequency[number]] -= 1
-        if self.frequencyToCount[self.numberToFrequency[number]] <= 0:
-                del self.frequencyToCount[self.numberToFrequency[number]]
+        if number in numberDict:
+            freqDict[numberDict[number]] -= 1
+            if freqDict[numberDict[number]] <= 0:
+                    del freqDict[numberDict[number]]
 
-        self.numberToFrequency[number] -= 1
-        if self.numberToFrequency[number] == -1:
-            del self.numberToFrequency[number]
+            numberDict[number] -= 1
+            if numberDict[number] == -1:
+                del numberDict[number]
 
-        self.frequencyToCount[self.numberToFrequency[number]] += 1
+            freqDict[numberDict[number]] += 1
 
 
 
