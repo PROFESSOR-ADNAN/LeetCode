@@ -16,7 +16,7 @@ class Solution:
                 textToPath[text].append(file_path)
 
         ans = []
-        for text, path in textToPath.items():
+        for path in textToPath.values():
             if len(path) > 1:
                 ans.append(path)
 
