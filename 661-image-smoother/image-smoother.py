@@ -1,31 +1,26 @@
-class Solution(object):
-    def imageSmoother(self, img):
-        """
-        :type img: List[List[int]]
-        :rtype: List[List[int]]
-        """
-        def average_calculator(row, col):
-            total_sum = 0
+class Solution:
+    def imageSmoother(self, img: List[List[int]]) -> List[List[int]]:
+        Row = len(img)
+        Col = len(img[0]) 
+
+        def filter(r, c):
+            total = 0
             count = 0
-            for r in range(row-1, row+2):
-                for c in range(col-1, col+2):
-                
-                    if r < 0 or r >= R or c < 0 or c >= C:
+
+            for row in range(r-1, r+2):
+                for col in range(c-1, c+2):
+                    if row < 0 or row >= Row or col < 0 or col >= Col:
                         continue
+                    total += img[row][col]
                     count += 1
-
-                    total_sum += img[r][c]
-
-            return total_sum // count
-
             
-        R = len(img)
-        C = len(img[0])
+            return math.floor(total/count)
 
-        ans_matrix = [[0 for _ in range(C)] for _ in range(R)]
+        ans = [[0 for i in range(Col)] for _ in range(Row)]
 
-        for row in range(R):
-            for col in range(C):
-                ans_matrix[row][col] = average_calculator(row, col)
-                
-        return ans_matrix
+        for r in range(Row):
+            for c in range(Col):
+                ans[r][c] = filter(r, c)
+
+        return ans
+
