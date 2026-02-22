@@ -1,0 +1,1 @@
+<h2>sum-of-even-numbers-after-queries Notes</h2><hr>[ Time taken: 7 m 20 s ]
