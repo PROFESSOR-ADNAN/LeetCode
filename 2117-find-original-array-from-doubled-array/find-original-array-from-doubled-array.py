@@ -96,6 +96,33 @@ class Solution:
         # return ans
         
 
+        # if len(changed) % 2:
+        #     return []
+
+        # changed_mpp = Counter(changed)
+        # changed.sort()
+
+        # n = len(changed)
+        # ans = []
+
+        # for i in range(n):
+        #     val = changed[i]
+        #     if val in changed_mpp:
+        #         if (val * 2) not in changed_mpp:
+        #             return []
+        #         ans.append(val)
+
+        #         changed_mpp[val] -= 1
+        #         if changed_mpp[val] == 0:
+        #             del changed_mpp[val]
+
+        #         changed_mpp[val*2] -= 1
+        #         if changed_mpp[val*2] == 0:
+        #             del changed_mpp[val*2]
+
+        # return ans
+        
+
         if len(changed) % 2:
             return []
 
@@ -105,20 +132,13 @@ class Solution:
         n = len(changed)
         ans = []
 
-        for i in range(n):
-            val = changed[i]
-            if val in changed_mpp:
-                if (val * 2) not in changed_mpp:
-                    return []
-                ans.append(val)
+        for num in changed:
+            if num == 0 and changed_mpp[num] >= 2:
+                changed_mpp[num] -= 2
+                ans.append(num)
+            elif num > 0 and changed_mpp[num] and changed_mpp[num*2]:
+                changed_mpp[num] -= 1
+                changed_mpp[num*2] -= 1
+                ans.append(num)
 
-                changed_mpp[val] -= 1
-                if changed_mpp[val] == 0:
-                    del changed_mpp[val]
-
-                changed_mpp[val*2] -= 1
-                if changed_mpp[val*2] == 0:
-                    del changed_mpp[val*2]
-                    
-        return ans
-        
+        return ans if len(ans) == len(changed)//2 else []
