@@ -23,23 +23,63 @@ class Solution:
         # return ans
 
 
+        # Row = len(mat)
+        # Col = len(mat[0])
+        # mpp = defaultdict(list)
+
+        # for r in range(Row):
+        #     for c in range(Col):
+        #         mpp[r+c].append(mat[r][c])
+
+        # turn = 1
+        # ans = []
+
+        # for nums in mpp.values():
+        #     if turn == 0:
+        #         ans.extend(nums)
+        #         turn = 1
+        #     else:
+        #         ans.extend(nums[::-1])
+        #         turn = 0
+
+        # return ans
+
+
         Row = len(mat)
         Col = len(mat[0])
-        mpp = defaultdict(list)
 
-        for r in range(Row):
-            for c in range(Col):
-                mpp[r+c].append(mat[r][c])
-
-        turn = 1
+        curr_row = curr_col = 0
+        direction = True
         ans = []
 
-        for nums in mpp.values():
-            if turn == 0:
-                ans.extend(nums)
-                turn = 1
+        while len(ans) < Row * Col:
+            if direction:
+                while curr_row >= 0 and curr_col < Col:
+                    ans.append(mat[curr_row][curr_col])
+
+                    curr_row -= 1
+                    curr_col += 1
+                
+                if curr_col == Col:
+                    curr_row += 2
+                    curr_col -= 1
+                else:
+                    curr_row += 1
+
+                direction = False
             else:
-                ans.extend(nums[::-1])
-                turn = 0
+                while curr_col >= 0 and curr_row < Row:
+                    ans.append(mat[curr_row][curr_col])
+
+                    curr_row += 1
+                    curr_col -= 1
+
+                if curr_row == Row:
+                    curr_col += 2
+                    curr_row -= 1
+                else:
+                    curr_col += 1
+
+                direction = True
 
         return ans
