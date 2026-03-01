@@ -1,25 +1,45 @@
-class Solution(object):
-    def findDiagonalOrder(self, mat):
-        """
-        :type mat: List[List[int]]
-        :rtype: List[int]
-        """
+class Solution:
+    def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
+        # Row = len(mat)
+        # Col = len(mat[0])
+        
+        # ans = []
+
+        # for i in range(1):
+        #     ans.append(mat[i][i])
+
+        # for i in range(2):
+        #     ans.append(mat[i][1-i])
+
+        # for i in range(3):
+        #     ans.append(mat[2-i][i])
+
+        # for i in range(1, 3):
+        #     ans.append(mat[i][3-i])
+
+        # for i in range(2, 3):
+        #     ans.append(mat[i][i])
+
+        # return ans
+
+
         Row = len(mat)
         Col = len(mat[0])
+        mpp = defaultdict(list)
 
-        ans = defaultdict(list)
         for r in range(Row):
             for c in range(Col):
-                ans[r+c].append(mat[r][c])
+                mpp[r+c].append(mat[r][c])
 
-        res = []
-        for i in range(Row + Col):
+        turn = 1
+        ans = []
 
-            if i % 2:
-                res.extend(ans[i])
+        for nums in mpp.values():
+            if turn == 0:
+                ans.extend(nums)
+                turn = 1
             else:
-                res.extend(ans[i][::-1])
+                ans.extend(nums[::-1])
+                turn = 0
 
-        return res
-
-        
+        return ans
