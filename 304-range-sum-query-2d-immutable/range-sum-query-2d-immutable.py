@@ -1,28 +1,30 @@
-class NumMatrix(object):
+class NumMatrix:
 
-    def __init__(self, matrix):
-        """
-        :type matrix: List[List[int]]
-        """
+    def __init__(self, matrix: List[List[int]]):
+        self.Row = len(matrix)
+        self.Col = len(matrix[0])
         self.matrix = matrix
-        R, C = len(matrix), len(matrix[0])
-        self.prefixSum = [[0] * (C+1) for _ in range(R+1)]
-        for r in range(R):
-            for c in range(C):
-                self.prefixSum[r+1][c+1] = self.prefixSum[r][c+1] + self.prefixSum[r+1][c] - self.prefixSum[r][c] + self.matrix[r][c]
 
-    def sumRegion(self, row1, col1, row2, col2):
-        """
-        :type row1: int
-        :type col1: int
-        :type row2: int
-        :type col2: int
-        :rtype: int
-        """
-        ans = self.prefixSum[row2+1][col2+1] - self.prefixSum[row1][col2+1] - self.prefixSum[row2+1][col1] + self.prefixSum[row1][col1]
-        return ans
-        
+        for r in range(self.Row):
+            for c in range(self.Col):
+                if 0 <= r-1 < self.Row:
+                    self.matrix[r][c] += self.matrix[r-1][c]
+                if 0 <= c-1 < self.Col:
+                    self.matrix[r][c] += self.matrix[r][c-1]
+                if 0 <= r-1 < self.Row and 0 <= c-1 < self.Col:
+                    self.matrix[r][c] -= self.matrix[r-1][c-1]
 
+
+    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
+            res = self.matrix[row2][col2]
+            if 0 <= row1-1 < self.Row:
+                res -= self.matrix[row1-1][col2]
+            if 0 <= col1-1 < self.Col:
+                res -= self.matrix[row2][col1-1]
+            if 0 <= row1-1 < self.Row and 0 <= col1-1 < self.Col:
+                res += self.matrix[row1-1][col1-1]
+    
+            return res
 
 # Your NumMatrix object will be instantiated and called as such:
 # obj = NumMatrix(matrix)
