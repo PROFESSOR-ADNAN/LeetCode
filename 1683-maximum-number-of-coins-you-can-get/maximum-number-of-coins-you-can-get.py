@@ -1,13 +1,17 @@
-class Solution(object):
-    def maxCoins(self, piles):
-        """
-        :type piles: List[int]
-        :rtype: int
-        """
-        total = 0
+class Solution:
+    def maxCoins(self, piles: List[int]) -> int:
         piles.sort()
-        my_ind = len(piles) - 2
-        for i in range(len(piles) // 3):
-            total += piles[my_ind]
-            my_ind -= 2
-        return total
+
+        l, r = 0, len(piles)-1
+        count = 0
+        while l < r:
+            l += 1
+            r -= 1
+
+            if l <= r:
+                count += piles[r]
+                r -= 1
+            else:
+                break
+
+        return count
