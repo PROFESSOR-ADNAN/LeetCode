@@ -3,7 +3,6 @@ class Solution:
         for i in range(1, len(nums)):
             nums[i] += nums[i-1]
 
-        print(nums)
         flag = False
         for num in nums:
             if num < 0:
