@@ -18,18 +18,32 @@ class Solution:
 
         # [24, 12, 8, 6]
 
+        # n = len(nums)
+
+        # prefix = [1]
+        # for i in range(n):
+        #     prefix.append(prefix[i] * nums[i])
+
+        # suffix = [1] * (n+1)
+        # for i in range(n-1, -1, -1):
+        #     suffix[i] = (suffix[i+1] * nums[i])
+
+        # ans = []
+        # for i in range(n):
+        #     ans.append(prefix[i]*suffix[i+1])
+
+        # return ans
         n = len(nums)
+        output = [1] * n
 
-        prefix = [1]
+        prefix = 1
         for i in range(n):
-            prefix.append(prefix[i] * nums[i])
+            output[i] *= prefix
+            prefix *= nums[i]
 
-        suffix = [1] * (n+1)
+        postfix = 1
         for i in range(n-1, -1, -1):
-            suffix[i] = (suffix[i+1] * nums[i])
+            output[i] *= postfix
+            postfix *= nums[i]
 
-        ans = []
-        for i in range(n):
-            ans.append(prefix[i]*suffix[i+1])
-
-        return ans
+        return output
