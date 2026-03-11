@@ -71,7 +71,7 @@ class Solution:
                     curr -= nums[left]
                     left += 1
                 
-                count += right - left
+                count += right - left + 1
 
             return count
 
