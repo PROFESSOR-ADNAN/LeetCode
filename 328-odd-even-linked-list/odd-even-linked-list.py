@@ -33,32 +33,46 @@ class Solution:
 
         # return dummy.next
 
+        # if not head: return None
+
+        # dummy = ListNode()
+
+        # list1 = head
+        # list2 = head.next
+        # list3 = dummy
+
+        # while list1 and list1.next:
+        #     list3.next = ListNode(list1.val)
+        #     list3 = list3.next
+
+        #     list1 = list1.next.next
+        
+        # if list1:
+        #     list3.next = ListNode(list1.val)
+        #     list3 = list3.next
+
+        # while list2 and list2.next:
+        #     list3.next = ListNode(list2.val)
+        #     list3 = list3.next
+
+        #     list2 = list2.next.next
+
+        # if list2:
+        #     list3.next = ListNode(list2.val)
+        #     list3 = list3.next
+
+        # return dummy.next
         if not head: return None
 
-        dummy = ListNode()
+        odd = head
+        even = head.next
+        evenHead = even
 
-        list1 = head
-        list2 = head.next
-        list3 = dummy
+        while even and even.next:
+            odd.next = even.next
+            odd = odd.next
+            even.next = odd.next
+            even = even.next
 
-        while list1 and list1.next:
-            list3.next = ListNode(list1.val)
-            list3 = list3.next
-
-            list1 = list1.next.next
-        
-        if list1:
-            list3.next = ListNode(list1.val)
-            list3 = list3.next
-
-        while list2 and list2.next:
-            list3.next = ListNode(list2.val)
-            list3 = list3.next
-
-            list2 = list2.next.next
-
-        if list2:
-            list3.next = ListNode(list2.val)
-            list3 = list3.next
-
-        return dummy.next
+        odd.next = evenHead
+        return head
