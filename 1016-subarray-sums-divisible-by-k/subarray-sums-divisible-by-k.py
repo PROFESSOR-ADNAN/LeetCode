@@ -42,17 +42,49 @@ class Solution:
 
         # return cnt
  
-        reminders = defaultdict(int)
-        reminders[0] += 1
-        count = 0
-        curr = 0
+        # reminders = defaultdict(int)
+        # reminders[0] += 1
+        # count = 0
+        # curr = 0
 
+        # for num in nums:
+        #     curr += num
+        #     rem = curr % k
+        #     if rem in reminders:
+        #         count += reminders[rem]
+            
+        #     reminders[rem] += 1
+
+        # return count
+
+
+
+
+
+
+        mpp = defaultdict(int)
+        mpp[0] += 1
+        cnt = 0
+        curr = 0
         for num in nums:
             curr += num
-            rem = curr % k
-            if rem in reminders:
-                count += reminders[rem]
-            
-            reminders[rem] += 1
+            reminder = curr % k
+            if reminder in mpp:
+                cnt += mpp[reminder]
+                mpp[reminder] += 1
+            else:
+                mpp[reminder] += 1
 
-        return count
+        return cnt
+
+
+        return cnt
+
+
+
+
+
+
+
+
+
