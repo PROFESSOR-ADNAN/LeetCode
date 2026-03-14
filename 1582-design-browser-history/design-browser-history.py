@@ -6,7 +6,6 @@ class Node:
 
 
 class BrowserHistory:
-
     def __init__(self, homepage: str):
         self.homePage = Node(homepage)
         self.currPage = self.homePage
