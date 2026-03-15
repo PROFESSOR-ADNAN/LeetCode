@@ -13,18 +13,33 @@ class Solution:
 
         # return ans
 
-        stack = []
-        ans = defaultdict(lambda:-1)
+        # stack = []
+        # ans = defaultdict(lambda:-1)
 
+        # for num in nums2:
+        #     while stack and stack[-1] < num:
+        #         ans[stack[-1]] = num
+        #         stack.pop()
+
+        #     stack.append(num)
+
+        # answer = []
+        # for num in nums1:
+        #     answer.append(ans[num])
+
+        # return answer
+
+
+        stack = []
+        mpp = defaultdict(lambda : -1)
         for num in nums2:
             while stack and stack[-1] < num:
-                ans[stack[-1]] = num
+                mpp[stack[-1]] = num
                 stack.pop()
 
             stack.append(num)
 
-        answer = []
-        for num in nums1:
-            answer.append(ans[num])
+        for i in range(len(nums1)):
+            nums1[i] = mpp[nums1[i]]
 
-        return answer
+        return nums1
