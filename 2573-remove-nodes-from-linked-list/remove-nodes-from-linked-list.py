@@ -15,8 +15,6 @@ class Solution:
             stack.append(curr.val)
             curr = curr.next
 
-        print(stack)
-
         dummy = ListNode()
         curr = dummy
 
