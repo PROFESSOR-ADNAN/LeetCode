@@ -37,20 +37,33 @@ class Solution:
 
             return prev
 
-        newHead = reverse(head)
-        mx = 0
+        # newHead = reverse(head)
+        # mx = 0
 
-        dummy = ListNode()
-        ans = dummy
-        curr = newHead
+        # dummy = ListNode()
+        # ans = dummy
+        # curr = newHead
 
-        while curr:
-            if curr.val >= mx:
-                ans.next = curr
-                ans = ans.next
-                mx = max(mx, curr.val)
+        # while curr:
+        #     if curr.val >= mx:
+        #         ans.next = curr
+        #         ans = ans.next
+        #         mx = max(mx, curr.val)
 
-            curr = curr.next
+        #     curr = curr.next
 
-        ans.next = None
-        return reverse(dummy.next)
+        # ans.next = None
+        # return reverse(dummy.next)
+
+        head = reverse(head)
+        curr = head
+        curr_max = curr.val
+
+        while curr.next:
+            if curr.next.val < curr_max:
+                curr.next = curr.next.next
+            else:
+                curr_max = curr.next.val
+                curr = curr.next
+
+        return reverse(head)
