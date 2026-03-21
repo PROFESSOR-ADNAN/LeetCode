@@ -17,21 +17,38 @@ class Solution:
         # else:
         #     return -1
 
+        # def flip(nums, i):
+        #     nums[i] = 0 if nums[i] else 1
+
+        # n = len(nums)
+        # operation = 0
+        # for i in range(n-2):
+        #     if nums[i] == 0:
+        #         flip(nums, i)
+        #         flip(nums, i+1)
+        #         flip(nums, i+2)
+
+        #         operation += 1  
+        
+        # print(nums)
+        # if not nums[-1] or not nums[-2]:
+        #     return -1
+
+        # return operation
+
 
         def flip(nums, i):
-            nums[i] = 0 if nums[i] else 1
+            nums[i] ^= 1
+            nums[i+1] ^= 1
+            nums[i+2] ^= 1
 
         n = len(nums)
         operation = 0
         for i in range(n-2):
             if nums[i] == 0:
                 flip(nums, i)
-                flip(nums, i+1)
-                flip(nums, i+2)
-
                 operation += 1  
         
-        print(nums)
         if not nums[-1] or not nums[-2]:
             return -1
 
