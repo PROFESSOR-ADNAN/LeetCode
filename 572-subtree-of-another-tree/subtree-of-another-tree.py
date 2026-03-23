@@ -25,9 +25,13 @@ class Solution:
         def sameTree(root, subRoot):
             if not root and not subRoot:
                 return True
-            if root and subRoot and root.val == subRoot.val:
-                return (sameTree(root.left, subRoot.left) and sameTree(root.right, subRoot.right))
-            return False
+            # if root and subRoot and root.val == subRoot.val:
+            #     return (sameTree(root.left, subRoot.left) and sameTree(root.right, subRoot.right))
+            # return False
+
+            if not root or not subRoot or root.val != subRoot.val:
+                return False
+            return (sameTree(root.left, subRoot.left) and sameTree(root.right, subRoot.right))
 
         if not subRoot: return True
         if not root: return False
