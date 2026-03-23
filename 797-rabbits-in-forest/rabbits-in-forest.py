@@ -42,21 +42,50 @@ class Solution:
 
         # return rabbits
 
+        # freq = defaultdict(int)
+        # rabbits = 0
+
+        # for val in answers:
+        #     if val == 0:
+        #         rabbits += 1
+        #         continue
+
+        #     freq[val] += 1
+        #     if freq[val] == val + 1:
+        #         rabbits += val + 1
+        #         freq[val] = 0
+
+        # for color, cnt in freq.items():
+        #     if cnt > 0:
+        #         rabbits += color + 1
+
+        # return rabbits
+
         freq = defaultdict(int)
-        rabbits = 0
+        count = 0
+        for ans in answers:
+            freq[ans] += 1
+            if freq[ans] == ans + 1:
+                count += ans + 1
+                freq[ans] = 0
 
-        for val in answers:
-            if val == 0:
-                rabbits += 1
-                continue
+        for f, v in freq.items():
+            if v > 0:
+                count += f + 1
 
-            freq[val] += 1
-            if freq[val] == val + 1:
-                rabbits += val + 1
-                freq[val] = 0
+        return count
 
-        for color, cnt in freq.items():
-            if cnt > 0:
-                rabbits += color + 1
 
-        return rabbits
+    
+
+
+
+
+
+
+
+
+
+
+
+
