@@ -18,18 +18,35 @@ class Solution:
         # backtrack(nums)
         # return ans
 
-        ans = []
-        comb = []
+        # ans = []
+        # comb = []
 
-        def backtrack(start):
-            if len(comb) == k:
-                ans.append(comb[:])
+        # def backtrack(start):
+        #     if len(comb) == k:
+        #         ans.append(comb[:])
+        #         return
+
+        #     for num in range(start, n+1):
+        #         comb.append(num)
+        #         backtrack(num+1)
+        #         comb.pop()
+
+        # backtrack(1)
+        # return ans
+
+        nums = [i for i in range(1, n+1)]
+        ans = []
+        path = []
+
+        def backtrack(ind):
+            if len(path) == k:
+                ans.append(path[:])
                 return
 
-            for num in range(start, n+1):
-                comb.append(num)
-                backtrack(num+1)
-                comb.pop()
+            for i in range(ind, n):
+                path.append(nums[i])
+                backtrack(i+1)
+                path.pop()
 
-        backtrack(1)
+        backtrack(0)
         return ans
