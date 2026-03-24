@@ -10,15 +10,15 @@ class Solution:
     def preorder(self, root: 'Node') -> List[int]:
         ans = []
 
-        def preorder(root, ans):
+        def preorder(root):
             if not root:
                 return
             if root:
                 ans.append(root.val)
 
             for node in root.children:
-                preorder(node, ans)
+                preorder(node)
 
             return ans
 
-        return preorder(root, ans)
+        return preorder(root)
