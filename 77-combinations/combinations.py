@@ -34,19 +34,40 @@ class Solution:
         # backtrack(1)
         # return ans
 
-        nums = [i for i in range(1, n+1)]
+        # nums = [i for i in range(1, n+1)]
+        # ans = []
+        # path = []
+
+        # def backtrack(ind):
+        #     if len(path) == k:
+        #         ans.append(path[:])
+        #         return
+
+        #     for i in range(ind, n):
+        #         path.append(nums[i])
+        #         backtrack(i+1)
+        #         path.pop()
+
+        # backtrack(0)
+        # return ans
+
+
         ans = []
         path = []
 
-        def backtrack(ind):
+        def backtrack(i):
             if len(path) == k:
                 ans.append(path[:])
                 return
 
-            for i in range(ind, n):
-                path.append(nums[i])
-                backtrack(i+1)
-                path.pop()
+            if i > n:
+                return
 
-        backtrack(0)
+            path.append(i)
+            backtrack(i+1)
+            path.pop()
+
+            backtrack(i+1)
+
+        backtrack(1)
         return ans
