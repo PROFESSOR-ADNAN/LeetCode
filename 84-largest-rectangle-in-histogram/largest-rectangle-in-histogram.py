@@ -33,39 +33,57 @@ class Solution:
 
         # return maxArea
 
-        nse = {}
-        def nextSE():
-            stack = []
-            for i in range(len(heights)):
-                height = heights[i]
-                while stack and heights[stack[-1]] > height:
-                    nse[stack.pop()] = i
+        # nse = {}
+        # def nextSE():
+        #     stack = []
+        #     for i in range(len(heights)):
+        #         height = heights[i]
+        #         while stack and heights[stack[-1]] > height:
+        #             nse[stack.pop()] = i
 
-                stack.append(i)
+        #         stack.append(i)
 
-            while stack:
-                nse[stack.pop()] = len(heights)
+        #     while stack:
+        #         nse[stack.pop()] = len(heights)
 
-        pse = {}
-        def prevSE():
-            stack = []
-            for i in range(len(heights)):
-                height = heights[i]
-                while stack and heights[stack[-1]] > height:
-                    stack.pop()
+        # pse = {}
+        # def prevSE():
+        #     stack = []
+        #     for i in range(len(heights)):
+        #         height = heights[i]
+        #         while stack and heights[stack[-1]] > height:
+        #             stack.pop()
 
-                if not stack:
-                    pse[i] = -1
-                else:
-                    pse[i] = stack[-1]
+        #         if not stack:
+        #             pse[i] = -1
+        #         else:
+        #             pse[i] = stack[-1]
 
-                stack.append(i)
+        #         stack.append(i)
         
-        prevSE()
-        nextSE()
+        # prevSE()
+        # nextSE()
 
+        # maxArea = 0
+        # for i in range(len(heights)): 
+        #     maxArea = max(maxArea, (nse[i]-pse[i]-1)*heights[i])
+
+        # return maxArea
+
+        stack = []
         maxArea = 0
-        for i in range(len(heights)): 
-            maxArea = max(maxArea, (nse[i]-pse[i]-1)*heights[i])
+
+        for i, height in enumerate(heights):
+            start = i
+            while stack and stack[-1][0] > height:
+                currHeight, currIndex = stack.pop()
+                maxArea = max(maxArea, (i - currIndex) * currHeight)
+                start = currIndex
+
+            stack.append([height, start])
+
+        while stack:
+            currHeight, currIndex = stack.pop()
+            maxArea = max(maxArea, (len(heights) - currIndex) * currHeight)
 
         return maxArea
