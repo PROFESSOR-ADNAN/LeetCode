@@ -1,20 +1,58 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
+        # ans = []
+        # def backtrack(path):
+        #     if len(path) == len(nums):
+        #         ans.append(path[:])
+        #         return
+
+        #     for i in range(len(nums)):
+        #         if nums[i] in path:
+        #             continue
+
+        #         path.append(nums[i])
+        #         backtrack(path)
+        #         path.pop()
+        
+        # backtrack([])
+        # return ans
+
+        # ans = []
+        # path = []
+
+        # def backtrack():
+        #     if len(path) == len(nums):
+        #         ans.append(path[:])
+        #         return
+
+        #     for i in range(len(nums)):
+        #         if nums[i] in path:
+        #             continue
+
+        #         path.append(nums[i])
+        #         backtrack()
+        #         path.pop()
+
+        # backtrack()
+        # return ans
+
         ans = []
-        def backtrack(path, visited):
+        path = []
+
+        def backtrack():
             if len(path) == len(nums):
                 ans.append(path[:])
                 return
 
-            for ind in range(len(nums)):
-                if visited[ind]:
+            for i in range(len(nums)):
+                if nums[i] in path:
                     continue
-
-                path.append(nums[ind])
-                visited[ind] = True
-                backtrack(path, visited)
+                
+                path.append(nums[i])
+                backtrack()
                 path.pop()
-                visited[ind] = False
-    
-        backtrack([], [False]*len(nums))
+
+        backtrack()
         return ans
+        
+        
