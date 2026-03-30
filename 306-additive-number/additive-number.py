@@ -70,6 +70,37 @@ class Solution:
         # if backtrack(0): return True
         # else: return False
 
+        # n = len(num)
+
+        # def calc(first, second):
+        #     ans = [first, second]
+        #     curr_len = len(first) + len(second)
+
+        #     while curr_len < n:
+        #         ans.append(str(int(ans[-1]) + int(ans[-2])))
+        #         curr_len += len(ans[-1])
+
+        #     return "".join(ans)
+
+        # for left in range(1, len(num)):
+        #     for right in range(left + 1, len(num)):
+        #         first = num[:left]
+        #         second = num[left:right]
+
+        #         if len(first) > 1 and int(first[0]) == 0:
+        #             continue
+        #         if len(second) > 1 and int(second[0]) == 0:
+        #             continue
+
+        #         ans = calc(first, second)
+
+        #         if ans == num:
+        #             return True
+
+        # return False
+
+
+
         n = len(num)
 
         def calc(first, second):
@@ -84,17 +115,18 @@ class Solution:
 
         for left in range(1, len(num)):
             for right in range(left + 1, len(num)):
+                if num[left] == "0" and right - left > 1:
+                    break
+
                 first = num[:left]
                 second = num[left:right]
-
-                if len(first) > 1 and int(first[0]) == 0:
-                    continue
-                if len(second) > 1 and int(second[0]) == 0:
-                    continue
 
                 ans = calc(first, second)
 
                 if ans == num:
                     return True
 
+            if num[0] == "0":
+                break
+                
         return False
