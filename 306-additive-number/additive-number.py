@@ -53,17 +53,17 @@ class Solution:
                 if len(val) > 1 and int(val[0]) == 0:
                     return
 
-                # if len(path) > 1:
-                #     curr = int(val)
-                #     prev = int(path[-1]) + int(path[-2])
+                if len(path) > 1:
+                    curr = int(val)
+                    prev = int(path[-1]) + int(path[-2])
 
-                #     if curr > prev:
-                #         break
-                #     if curr < prev:
-                #         continue
+                    if curr > prev:
+                        break
+                    if curr < prev:
+                        continue
 
-                if len(path) > 1 and int(val) != int(path[-1]) + int(path[-2]):
-                    continue
+                # if len(path) > 1 and int(val) != int(path[-1]) + int(path[-2]):
+                #     continue
 
                 path.append(val)
                 if backtrack(j+1):
