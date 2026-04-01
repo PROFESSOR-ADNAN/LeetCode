@@ -5,8 +5,8 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def __init__(self):
-        self.ans = 0
+    # def __init__(self):
+    #     self.ans = 0
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
         # curr = 0
         # ans = 0
@@ -66,31 +66,54 @@ class Solution:
         # allPath(root)
         # return len(ans)
 
+        # def dfs(node, curr):
+        #     if not node:
+        #         return
+
+        #     if not node.left and not node.right:
+        #         curr += node.val
+        #         if curr == targetSum:
+        #             self.ans += 1
+        #         curr -= node.val
+        #         return
+
+        #     curr += node.val
+        #     if curr == targetSum:
+        #         self.ans += 1
+        #     dfs(node.left, curr)
+        #     dfs(node.right, curr)
+
+        #     curr -= node.val
+
+        # if not root:
+        #     return 0
+
+        # dfs(root, 0)
+
+        # self.pathSum(root.left, targetSum)
+        # self.pathSum(root.right, targetSum)
+
+        # return self.ans
+
+        self.ans = 0
+        self.map = defaultdict(int)
+        self.map[0] = 1
+
         def dfs(node, curr):
             if not node:
                 return
 
-            if not node.left and not node.right:
-                curr += node.val
-                if curr == targetSum:
-                    self.ans += 1
-                curr -= node.val
-                return
-
             curr += node.val
-            if curr == targetSum:
-                self.ans += 1
-            dfs(node.left, curr)
-            dfs(node.right, curr)
+            self.ans += self.map[curr-targetSum]
+            self.map[curr] += 1
 
-            curr -= node.val
+            if node.left:
+                dfs(node.left, curr)
+            if node.right:
+                dfs(node.right, curr)
 
-        if not root:
-            return 0
+            self.map[curr] -= 1
 
         dfs(root, 0)
-
-        self.pathSum(root.left, targetSum)
-        self.pathSum(root.right, targetSum)
-
         return self.ans
+
