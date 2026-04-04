@@ -34,7 +34,6 @@ class Solution:
         citations.reverse()
 
         def isValid(h):
-            print(h, citations[h-1])
             return citations[h-1] >= h
 
 
