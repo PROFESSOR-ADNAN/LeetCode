@@ -134,15 +134,45 @@ class Solution:
 
         # print(nums)
 
+        # for i in range(len(nums)):
+        #     nums[i] = str(nums[i])
+
+        # def comparator(a, b):
+        #     if a+b > b+a:
+        #         return -1
+        #     else:
+        #         return 1
+
+        # nums.sort(key=cmp_to_key(comparator))
+
+        # return str(int("".join(nums)))
+
+
+
+
         for i in range(len(nums)):
             nums[i] = str(nums[i])
 
-        def comparator(a, b):
-            if a+b > b+a:
+        def comparator(n1, n2):
+            if n1 + n2 > n2 + n1:
                 return -1
             else:
                 return 1
 
-        nums.sort(key=cmp_to_key(comparator))
+        nums = sorted(nums, key=cmp_to_key(comparator))
 
         return str(int("".join(nums)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
