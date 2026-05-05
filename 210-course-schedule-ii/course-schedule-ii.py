@@ -40,22 +40,51 @@ class Solution:
         # return top_order
 
 
-        indegree = [0] * numCourses
+        # indegree = [0] * numCourses
+        # graph = defaultdict(list)
+        # for u, v in prerequisites:
+        #     graph[v].append(u)
+        #     indegree[u] += 1
+
+        # q = deque(i for i in range(numCourses) if indegree[i] == 0)
+
+        # top_order = []
+        # while q:
+        #     node = q.popleft()
+        #     top_order.append(node)
+
+        #     for nei in graph[node]:
+        #         indegree[nei] -= 1
+        #         if indegree[nei] == 0:
+        #             q.append(nei)
+
+        # return top_order if len(top_order) == numCourses else []
+
         graph = defaultdict(list)
         for u, v in prerequisites:
             graph[v].append(u)
-            indegree[u] += 1
 
-        q = deque(i for i in range(numCourses) if indegree[i] == 0)
+        white, gray, black = 0, 1, 2
+        color = {i:white for i in range(numCourses)}
 
         top_order = []
-        while q:
-            node = q.popleft()
+
+        def dfs(node):
+            nonlocal top_order 
+
+            color[node] = gray
+            for nei in graph[node]:
+                if color[nei] == gray: return True
+                if color[nei] == white: 
+                    if dfs(nei):
+                        return True
+
+            color[node] = black
             top_order.append(node)
 
-            for nei in graph[node]:
-                indegree[nei] -= 1
-                if indegree[nei] == 0:
-                    q.append(nei)
+        for i in range(numCourses):
+            if color[i] == white:
+                if dfs(i):
+                    return []
 
-        return top_order if len(top_order) == numCourses else []
+        return top_order[::-1]
