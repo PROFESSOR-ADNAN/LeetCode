@@ -18,7 +18,8 @@ class Solution:
             b = -1 * heapq.heappop(maxHeap)
 
             if a != b:
-                maxHeap.append(-1 * (a-b))
-                heapq.heapify(maxHeap)
+                # maxHeap.append(-1 * (a-b))
+                # heapq.heapify(maxHeap)
+                heapq.heappush(maxHeap, -(a-b))
 
-        return -1 * heapq.heappop(maxHeap) if maxHeap else 0
+        return -maxHeap[0] if maxHeap else 0
