@@ -29,14 +29,30 @@ class Solution:
         # return helper(n)
 
 
-        if n == 0:
-            return 0
-        if n == 1 or n == 2:
-            return 1
+        # if n == 0:
+        #     return 0
+        # if n == 1 or n == 2:
+        #     return 1
 
-        tribonacci = [0, 1, 1]
-        for i in range(3, n+1):
-            sm = tribonacci[i-1] + tribonacci[i-2] + tribonacci[i-3]
-            tribonacci.append(sm)
+        # tribonacci = [0, 1, 1]
+        # for i in range(3, n+1):
+        #     sm = tribonacci[i-1] + tribonacci[i-2] + tribonacci[i-3]
+        #     tribonacci.append(sm)
 
-        return tribonacci[-1]
+        # return tribonacci[-1]
+
+        if n == 0: return 0
+        if n == 1: return 1
+        if n == 2: return 1
+
+        f1 = 0
+        f2 = 1
+        f3 = 1
+
+        for i in range(2, n):
+            f4 = f1 + f2 + f3
+            f1 = f2
+            f2 = f3
+            f3 = f4
+
+        return f4
