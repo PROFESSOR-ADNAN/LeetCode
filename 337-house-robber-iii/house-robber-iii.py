@@ -52,4 +52,6 @@ class Solution:
             return [rob_current, not_rob_current]
 
         ans = dfs(root)
-        return max(ans[0], ans[1])
+        final_ans = max(ans[0], ans[1])
+
+        return final_ans
