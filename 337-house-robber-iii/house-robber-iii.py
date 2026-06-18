@@ -53,5 +53,3 @@ class Solution:
 
         ans = dfs(root)
         return max(ans[0], ans[1])
-
-        
